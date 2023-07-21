@@ -17,7 +17,7 @@ function Login() {
       .then(({ data }) => {
         if (data.token) {
           localStorage.setItem("token", data.token);
-          navigate("/profile");
+          navigate("/links");
         } else {
           alert(data.msg);
         }
@@ -45,7 +45,7 @@ function Login() {
           }}
         />
         <button
-          className="signup-login-btn"
+          className="signup-login-btn "
           onClick={() => {
             login();
           }}
@@ -56,7 +56,7 @@ function Login() {
       <p className="info-text" >
         If you do not have an account{" "}
         <button
-          className="signup-login-switch-btn"
+          className="signup-login-switch-btn "
           onClick={() => {
             toSignup();
           }}
