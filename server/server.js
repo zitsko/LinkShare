@@ -7,6 +7,7 @@ require('dotenv').config();
 
 const userRouter = require("./routers/userRouter.js")
 const linkRouter = require('./routers/linkRouter.js');
+const profileRouter = require('./routers/profileRouter.js')
 
 app.use(
     cors({
@@ -16,6 +17,7 @@ app.use(
 
 app.use("/links", linkRouter)
 app.use("/user", userRouter);
+app.use("/profile", profileRouter)
 
 const PORT = 3636
 app.listen(PORT, ()=>{
