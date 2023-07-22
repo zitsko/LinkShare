@@ -50,6 +50,7 @@ async function updateUserById(req, res) {
 
     // Check if a profile with the same email already exists
     const existingProfile = await Profile.findOne({ email });
+    //prevent user update with email taken from another user
     if (existingProfile && existingProfile._id.toString() !== id) {
       return res.status(400).json({ error: 'A profile with this email already exists.' });
     }
@@ -57,7 +58,7 @@ async function updateUserById(req, res) {
     const profile = await Profile.findByIdAndUpdate(
       id,
       { profilePhoto, firstName, lastName, email },
-      { new: true }
+      { new: true } //ensure updated profile is returned
     );
 
     if (!profile) {
