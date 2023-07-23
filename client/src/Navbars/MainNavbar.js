@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-function PreviewNavbar() {
+function MainNavbar() {
   const navigate = useNavigate();
 
   return (
@@ -11,11 +11,15 @@ function PreviewNavbar() {
           <button onClick={() => navigate('/links')}>Links</button>
         </li>
         <li>
-          <button >Share Links</button>
+          <button onClick={() => navigate('/profile')}>Profile</button>
+        </li>
+        <li>
+          <button onClick={() => navigate('/preview')}>Preview</button>
         </li>
       </ul>
     </nav>
   );
 }
 
-export default PreviewNavbar;
+export default MainNavbar;
+
