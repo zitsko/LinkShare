@@ -9,10 +9,6 @@ const linkSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  description: {
-    type: String,
-    required: true,
-  },
   platform: {
     type: String,
     required: true,
@@ -41,7 +37,7 @@ const linkSchema = new mongoose.Schema({
   },
   order: {
     type: Number,
-    required: true,
+    // required: true,
   },
   userId: {
     type: String,

@@ -3,13 +3,12 @@ const Link = require('../modules/link');
 // Controller for creating a new link
 async function createLink(req, res) {
   try {
-    const { title, url, description, platform, order, userId } = req.body;
+    const { title, url, platform, order, userId } = req.body;
 
     // Create a new link using the Link model
     const newLink = await Link.create({
       title,
       url,
-      description,
       platform,
       order,
       userId,
@@ -67,7 +66,6 @@ async function updateLinkById(req, res) {
     // Update the link properties
     link.title = title;
     link.url = url;
-    link.description = description;
     link.platform = platform;
     link.order = order;
     link.userId = userId;
