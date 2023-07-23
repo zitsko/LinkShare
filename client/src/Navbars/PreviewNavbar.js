@@ -8,7 +8,7 @@ function PreviewNavbar() {
     <nav>
       <ul>
         <li>
-          <button onClick={() => navigate('/links')}>Links</button>
+          <button onClick={() => navigate('/links')}>Back to Links</button>
         </li>
         <li>
           <button >Share Links</button>

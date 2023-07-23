@@ -6,7 +6,7 @@ function MainNavbar() {
 
   return (
     <nav>
-      <ul>
+      <ul className='main-navbar-container'>
         <li>
           <button onClick={() => navigate('/links')}>Links</button>
         </li>

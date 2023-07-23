@@ -1,0 +1,13 @@
+.links-navbar-container {
+    max-width: 37.5rem;
+    margin: 0 auto;
+    padding: 1.25rem;
+  }
+
+  /* .start-info-section{
+    display: none;
+  } */
+
+  .disabled{
+    display: none;
+  }
