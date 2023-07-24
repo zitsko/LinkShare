@@ -1,27 +1,13 @@
 const mongoose = require('mongoose');
 
 const linkSchema = new mongoose.Schema({
-  title: {
-    type: String,
-    required: true,
-  },
-  url: {
-    type: String,
-    required: true,
-  },
   platform: {
     type: String,
-    required: true,
+    // required: true,
     validate: {
       validator: function (value) {
         try {
-          // Parse and validate the URL
-          const urlObject = new URL(this.url);
-
-          // Extract the hostname (domain name) from the URL
-          const hostname = urlObject.hostname.toLowerCase();
-
-          // Check if the platform name matches the hostname
+           // Check if the platform name matches the hostname
           const platformMatchesHostname =
             (value.toLowerCase() === 'github' && hostname.includes('github')) ||
             (value.toLowerCase() === 'linkedin' && hostname.includes('linkedin'));
@@ -35,13 +21,35 @@ const linkSchema = new mongoose.Schema({
       message: 'Invalid platform for the provided URL.',
     },
   },
+  customPlatform: {
+    type: String,
+    // customPlatform is optional, so it doesn't need to be required.
+    validate: {
+      validator: function (value) {
+        try {
+          // If customPlatform is provided, validate it as a valid URL using the URL constructor
+          if (value) {
+            new URL(value);
+          }
+          return true;
+        } catch (error) {
+          // If the URL is invalid, don't proceed with validation
+          return false;
+        }
+      },
+      message: 'Invalid URL for custom platform.',
+    },
+  },
+  url: {
+    type: String,
+    // required: true,
+  },
   order: {
     type: Number,
-    // required: true,
   },
   userId: {
     type: String,
-    required: true,
+    // required: true,
   },
 });
 

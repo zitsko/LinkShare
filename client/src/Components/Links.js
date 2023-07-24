@@ -12,7 +12,6 @@ function Links() {
   const [links, setLinks] = useState([]); //all links array
   const [selectedLink, setSelectedLink] = useState({}); // Provide a default value as an empty object
   const [linkUrl, setLinkUrl] = useState(""); // State for the link input
-  const [linkTitle, setLinkTitle] = useState(""); // State for the link title input
   const navigate = useNavigate();
   const [user, setUser] = useState({
     _id: "",
@@ -47,7 +46,9 @@ function Links() {
   // Fetch all links from the backend based on user ID
   const fetchLinks = async (userId) => {
     try {
+      console.log("Fetching links for user:", userId);
       const response = await axios.get(`http://localhost:3636/links/${userId}`);
+      console.log("Response data:", response.data);
       setLinks(response.data);
     } catch (error) {
       console.error("Error fetching links:", error);
@@ -65,16 +66,10 @@ function Links() {
     setCustomPlatform(e.target.value);
   };
 
-  // Event handler for link title input
-    const handleLinkTitleChange = (e) => {
-    setLinkTitle(e.target.value);
-  };
-
   // Event handler for link url input
   const handleLinkURLChange = (e) => {
     setLinkUrl(e.target.value); // Update the linkUrl state for the link input
   };
-
   
   // Event handler for editing a link
   const handleEditLink = (link) => {
@@ -83,16 +78,13 @@ function Links() {
     setPlatform(link.platform);
     setCustomPlatform("");
     setLinkUrl(link.url);
-    setLinkTitle(link.title);
   };
 
   // Event handler for submit
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     // Prepare the data to be sent in the POST request
     const linkData = {
-      title: linkTitle,
       url: linkUrl,
       platform: customPlatform || platform,
       userId: user._id,
@@ -109,6 +101,8 @@ function Links() {
       } else {
         // If no ID, create a new link
         await axios.post("http://localhost:3636/links", linkData);
+        const response = await axios.post("http://localhost:3636/links", linkData);
+        console.log("Response data:", response.data);
       }
 
       // Update the state to show the new link
@@ -117,7 +111,6 @@ function Links() {
       // Clear the form fields after saving
       setPlatform("");
       setCustomPlatform("");
-      setLinkTitle("");
       setLinkUrl("");
       setSelectedLink({});
     } catch (error) {
@@ -154,7 +147,6 @@ function Links() {
           linkUrl={linkUrl}
           handlePlatformChange={handlePlatformChange}
           handleCustomPlatformChange={handleCustomPlatformChange}
-          handleLinkTitleChange = {handleLinkTitleChange}
           handleLinkURLChange={handleLinkURLChange}
           handleSubmit={handleSubmit}
         />
@@ -167,7 +159,7 @@ function Links() {
  
 
         {/* Initial content before adding links */}
-        <div className="start-info-section">
+        <div className="start-info-section disabled">
           <h2>Let's get started!</h2>
           <p>
             Use the “Add new link” button to get started. Once you have more

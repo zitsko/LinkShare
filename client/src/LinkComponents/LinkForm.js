@@ -5,10 +5,8 @@ function LinkForm({
   platform,
   customPlatform,
   linkUrl,
-  linkTitle,
   handlePlatformChange,
   handleCustomPlatformChange,
-  handleLinkTitleChange,
   handleLinkURLChange,
   handleSubmit,
 }) {
@@ -44,13 +42,13 @@ function LinkForm({
         </div>
       )}
 
-      {/* Link Input */}
-      <div>
-        <label htmlFor="link">Link:</label>
+        {/* Link URL Input */}
+        <div>
+        <label htmlFor="linkUrl">Link URL:</label>
         <input
           type="text"
-          id="link"
-          name="link"
+          id="linkUrl"
+          name="linkUrl"
           value={linkUrl}
           onChange={handleLinkURLChange}
         />

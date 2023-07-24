@@ -5,11 +5,12 @@ const linkController = require('../controllers/linkController');
 // Route for creating a new link
 router.post('/', linkController.createLink);
 
-// Route for getting all links
-router.get('/', linkController.getAllLinks);
-
 // Route for getting a link by its ID
 router.get('/:id', linkController.getLinkById);
+
+// Route for getting all links for the user
+router.get('/:userId', linkController.getAllLinks);
+
 
 // Route for updating a link by its ID
 router.put('/:id', linkController.updateLinkById);

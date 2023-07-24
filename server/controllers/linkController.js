@@ -3,34 +3,36 @@ const Link = require('../modules/link');
 // Controller for creating a new link
 async function createLink(req, res) {
   try {
-    const { title, url, platform, order, userId } = req.body;
+    const { platform, customPlatform, url, order, userId } = req.body;
 
     // Create a new link using the Link model
     const newLink = await Link.create({
-      title,
-      url,
       platform,
+      customPlatform,
+      url,
       order,
       userId,
     });
 
     return res.status(201).json(newLink);
-  } catch (error) {
+  } catch (error) {  
     return res.status(500).json({ error: 'Failed to create the link.' });
   }
 }
-
-// Controller for getting all links
+// Controller for getting all links for a specific user
 async function getAllLinks(req, res) {
   try {
-    // Retrieve all links from the database
-    const links = await Link.find();
+    const userId = req.params.userId; // Get the user ID from the URL parameters
+
+    // Retrieve all links from the database that have a matching user ID
+    const links = await Link.find({ userId});
 
     return res.json(links);
   } catch (error) {
     return res.status(500).json({ error: 'Failed to retrieve links.' });
   }
 }
+
 
 // Controller for getting a link by its ID
 async function getLinkById(req, res) {
@@ -53,7 +55,7 @@ async function getLinkById(req, res) {
 // Controller for updating a link by its ID
 async function updateLinkById(req, res) {
   const linkId = req.params.id;
-  const { title, url, description, platform, order, userId } = req.body;
+  const { platform, url, customPlatform, order, userId } = req.body;
 
   try {
     // Find the link with the given ID
@@ -64,9 +66,9 @@ async function updateLinkById(req, res) {
     }
 
     // Update the link properties
-    link.title = title;
-    link.url = url;
     link.platform = platform;
+    link.url = url;
+    link.customPlatform = customPlatform;
     link.order = order;
     link.userId = userId;
 
