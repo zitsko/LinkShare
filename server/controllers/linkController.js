@@ -2,6 +2,7 @@ const Link = require('../modules/link');
 
 // Controller for creating a new link
 async function createLink(req, res) {
+  console.log(req.body)
   try {
     const { platform, customPlatform, url, order, userId } = req.body;
 

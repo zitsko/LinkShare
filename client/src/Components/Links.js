@@ -84,11 +84,21 @@ function Links() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     // Prepare the data to be sent in the POST request
-    const linkData = {
-      url: linkUrl,
-      platform: customPlatform || platform,
-      userId: user._id,
-    };
+    var linkData = null
+    if(customPlatform){
+       linkData = {
+        url: linkUrl,
+        customPlatform:  customPlatform,
+        userId: user._id,
+      };
+    } else {
+       linkData = {
+        url: linkUrl,
+        platform: platform,
+        userId: user._id,
+      };
+    }
+
 
     try {
       // Make the POST request to save the link

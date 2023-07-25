@@ -9,8 +9,8 @@ const linkSchema = new mongoose.Schema({
         try {
            // Check if the platform name matches the hostname
           const platformMatchesHostname =
-            (value.toLowerCase() === 'github' && hostname.includes('github')) ||
-            (value.toLowerCase() === 'linkedin' && hostname.includes('linkedin'));
+            (value.toLowerCase() === 'github' && value.includes('github')) ||
+            (value.toLowerCase() === 'linkedin' && value.includes('linkedin'));
 
           return platformMatchesHostname;
         } catch (error) {
