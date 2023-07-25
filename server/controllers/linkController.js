@@ -2,7 +2,7 @@ const Link = require('../modules/link');
 
 // Controller for creating a new link
 async function createLink(req, res) {
-  console.log(req.body)
+  //console.log(req.body)
   try {
     const { platform, customPlatform, url, order, userId } = req.body;
 
@@ -106,7 +106,7 @@ async function deleteAllLinks(req, res) {
       // Delete all links from the database
       const result = await Link.deleteMany();
   
-      return res.json({ message: 'All links have been deleted.', deletedCount: result.deletedCount });
+      return res.json({ message: 'All links have been deleted.' });
     } catch (error) {
       return res.status(500).json({ error: 'Failed to delete all links.' });
     }

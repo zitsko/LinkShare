@@ -12,6 +12,7 @@ function Links() {
   const [links, setLinks] = useState([]); //all links array
   const [selectedLink, setSelectedLink] = useState({}); // Provide a default value as an empty object
   const [linkUrl, setLinkUrl] = useState(""); // State for the link input
+  const [showLinkForm, setShowLinkForm] = useState(false); //manage the visibility of LinkForm
   const navigate = useNavigate();
   const [user, setUser] = useState({
     _id: "",
@@ -57,7 +58,10 @@ function Links() {
 
   //-------- Handlers-------------
 
-  // Event handler for platform input
+  const handleAddLink = () => {
+    setShowLinkForm(true);
+  };
+
   const handlePlatformChange = (e) => {
     setPlatform(e.target.value);
   };
@@ -66,12 +70,10 @@ function Links() {
     setCustomPlatform(e.target.value);
   };
 
-  // Event handler for link url input
   const handleLinkURLChange = (e) => {
     setLinkUrl(e.target.value); // Update the linkUrl state for the link input
   };
-  
-  // Event handler for editing a link
+
   const handleEditLink = (link) => {
     setSelectedLink(link);
     // Set platform and customPlatform state with values from the selected link
@@ -80,25 +82,23 @@ function Links() {
     setLinkUrl(link.url);
   };
 
-  // Event handler for submit
   const handleSubmit = async (e) => {
     e.preventDefault();
     // Prepare the data to be sent in the POST request
-    var linkData = null
-    if(customPlatform){
-       linkData = {
+    var linkData = null;
+    if (customPlatform) {
+      linkData = {
         url: linkUrl,
-        customPlatform:  customPlatform,
+        customPlatform: customPlatform,
         userId: user._id,
       };
     } else {
-       linkData = {
+      linkData = {
         url: linkUrl,
         platform: platform,
         userId: user._id,
       };
     }
-
 
     try {
       // Make the POST request to save the link
@@ -111,7 +111,6 @@ function Links() {
       } else {
         // If no ID, create a new link
         await axios.post("http://localhost:3636/links", linkData);
-        
       }
 
       // Update the state to show the new link
@@ -127,13 +126,30 @@ function Links() {
     }
   };
 
-  // Handle Delete Link
   const handleDeleteLink = async (linkId) => {
-    try {
-      await axios.delete(`http://localhost:3636/links/${linkId}`);
-      fetchLinks(user._id);
-    } catch (error) {
-      console.error("Error deleting link:", error);
+    const shouldDelete = window.confirm(
+      "Are you sure you want to delete this link?"
+    );
+    if (shouldDelete) {
+      try {
+        await axios.delete(`http://localhost:3636/links/${linkId}`);
+        fetchLinks(user._id);
+      } catch (error) {
+        console.error("Error deleting link:", error);
+      }
+    }
+  };
+
+  const handleDeleteAllLinks = async () => {
+    const shouldDeleteAll = window.confirm(
+      "You will delete all your links. Are you sure?"
+    );
+    if (shouldDeleteAll) {
+      try {
+        await axios.delete("http://localhost:3636/links");
+      } catch (error) {
+        console.error("Failed to delete all links:", error);
+      }
     }
   };
 
@@ -148,27 +164,33 @@ function Links() {
           the world in one convenient place. Show off your digital presence with
           style!
         </p>
-        <button>+Add a new link</button>
+        <button onClick={handleAddLink}>+Add a new link</button>
 
-        <LinkForm
-          platform={platform}
-          customPlatform={customPlatform}
-          linkUrl={linkUrl}
-          handlePlatformChange={handlePlatformChange}
-          handleCustomPlatformChange={handleCustomPlatformChange}
-          handleLinkURLChange={handleLinkURLChange}
-          handleSubmit={handleSubmit}
-        />
+        {/* Render LinkForm if showLinkForm is true */}
 
+        {showLinkForm && (
+          <LinkForm
+            platform={platform}
+            customPlatform={customPlatform}
+            linkUrl={linkUrl}
+            handlePlatformChange={handlePlatformChange}
+            handleCustomPlatformChange={handleCustomPlatformChange}
+            handleLinkURLChange={handleLinkURLChange}
+            handleSubmit={handleSubmit}
+            handleDeleteAllLinks={handleDeleteAllLinks}
+          />
+        )}
         <LinkList
           links={links}
           handleEditLink={handleEditLink}
           handleDeleteLink={handleDeleteLink}
         />
- 
 
         {/* Initial content before adding links */}
-        <div className="start-info-section disabled">
+        <div
+          className="start-info-section"
+          style={{ display: showLinkForm ? "none" : "block" }}
+        >
           <h2>Let's get started!</h2>
           <p>
             Use the “Add new link” button to get started. Once you have more
