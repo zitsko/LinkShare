@@ -111,8 +111,7 @@ function Links() {
       } else {
         // If no ID, create a new link
         await axios.post("http://localhost:3636/links", linkData);
-        const response = await axios.post("http://localhost:3636/links", linkData);
-        console.log("Response data:", response.data);
+        
       }
 
       // Update the state to show the new link

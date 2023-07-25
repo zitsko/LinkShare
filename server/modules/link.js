@@ -23,7 +23,11 @@ const linkSchema = new mongoose.Schema({
   },
   customPlatform: {
     type: String,
-    // customPlatform is optional, so it doesn't need to be required.
+    
+  },
+  url: {
+    type: String,
+    // required: true,
     validate: {
       validator: function (value) {
         try {
@@ -39,10 +43,6 @@ const linkSchema = new mongoose.Schema({
       },
       message: 'Invalid URL for custom platform.',
     },
-  },
-  url: {
-    type: String,
-    // required: true,
   },
   order: {
     type: Number,
