@@ -1,69 +1,64 @@
-// controllers/profileController.js
 const Profile = require('../modules/profile');
 
-// Controller for creating a new user profile
-async function createUser(req, res) {
+async function createUserProfile(req, res) {
+  console.log(req.body)
   try {
-    const { profilePhoto, firstName, lastName, email } = req.body;
+    const { profileImage, firstName, lastName, email, userId } = req.body;
 
-    // Check if a profile with the same email already exists
-    const existingProfile = await Profile.findOne({ email });
-    if (existingProfile) {
-      return res.status(400).json({ error: 'A profile with this email already exists.' });
-    }
-
-    // Create a new profile
-    const profile = await Profile.create({
-      profilePhoto,
+    // Create a new user profile using the Profile model
+    const newProfile = await Profile.create({
+      profileImage,
       firstName,
       lastName,
       email,
+      userId,
     });
 
-    return res.status(201).json(profile);
+    return res.status(201).json(newProfile);
   } catch (error) {
     return res.status(500).json({ error: 'Failed to create the user profile.' });
   }
 }
 
-// Controller for getting a user profile by ID
-async function getUserById(req, res) {
+async function getUserProfileByUserId(req, res) {
+  
+
   try {
-    const { id } = req.params;
-    const profile = await Profile.findById(id);
+    const userId = req.params.userId;
+    // Find the user profile with the given user ID
+    const profile = await Profile.find({ userId });
 
     if (!profile) {
-      return res.status(404).json({ error: 'Profile not found.' });
+      return res.status(404).json({ error: 'User profile not found.' });
     }
 
     return res.json(profile);
   } catch (error) {
-    return res.status(500).json({ error: 'Failed to fetch the user profile.' });
+    return res.status(500).json({ error: 'Failed to retrieve the user profile.' });
   }
 }
 
-// Controller for updating a user profile by ID
-async function updateUserById(req, res) {
+async function updateUserProfileByUserId(req, res) {
+  const infoId = req.params.id;
+  const { profileImage, firstName, lastName, email,userId } = req.body;
+
   try {
-    const { id } = req.params;
-    const { profilePhoto, firstName, lastName, email } = req.body;
-
-    // Check if a profile with the same email already exists
-    const existingProfile = await Profile.findOne({ email });
-    //prevent user update with email taken from another user
-    if (existingProfile && existingProfile._id.toString() !== id) {
-      return res.status(400).json({ error: 'A profile with this email already exists.' });
-    }
-
-    const profile = await Profile.findByIdAndUpdate(
-      id,
-      { profilePhoto, firstName, lastName, email },
-      { new: true } //ensure updated profile is returned
-    );
+    // Find the info profile with the given info ID
+    let profile = await profile.findById({ infoId });
 
     if (!profile) {
-      return res.status(404).json({ error: 'Profile not found.' });
+      return res.status(404).json({ error: 'User profile not found.' });
     }
+
+    // Update the user profile properties
+    profile.profileImage = profileImage;
+    profile.firstName = firstName;
+    profile.lastName = lastName;
+    profile.email = email;
+    profile.userId = userId;
+
+    // Save the updated user profile to the database
+    await profile.save();
 
     return res.json(profile);
   } catch (error) {
@@ -71,25 +66,8 @@ async function updateUserById(req, res) {
   }
 }
 
-// Controller for deleting a user profile by ID
-async function deleteUserById(req, res) {
-  try {
-    const { id } = req.params;
-    const profile = await Profile.findByIdAndDelete(id);
-
-    if (!profile) {
-      return res.status(404).json({ error: 'Profile not found.' });
-    }
-
-    return res.json({ message: 'Profile deleted successfully.' });
-  } catch (error) {
-    return res.status(500).json({ error: 'Failed to delete the user profile.' });
-  }
-}
-
 module.exports = {
-  createUser,
-  getUserById,
-  updateUserById,
-  deleteUserById,
+  createUserProfile,
+  getUserProfileByUserId,
+  updateUserProfileByUserId,
 };

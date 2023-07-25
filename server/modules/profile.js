@@ -1,8 +1,6 @@
-// models/profile.js
 const mongoose = require('mongoose');
 
 const profileSchema = new mongoose.Schema({
-    
   profilePhoto: {
     type: String,
     // required: true,
@@ -18,7 +16,11 @@ const profileSchema = new mongoose.Schema({
   email: {
     type: String,
     required: true,
-    unique: true, //unique for profile
+    // unique: true, 
+  },
+   userId: {
+    type: String,
+    required: true,
   },
 });
 
