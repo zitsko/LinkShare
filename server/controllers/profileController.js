@@ -1,7 +1,7 @@
 const Profile = require('../modules/profile');
 
 async function createUserProfile(req, res) {
-  console.log(req.body)
+  // console.log(req.body)
   try {
     const { profileImage, firstName, lastName, email, userId } = req.body;
 
@@ -22,7 +22,6 @@ async function createUserProfile(req, res) {
 
 async function getUserProfileByUserId(req, res) {
   
-
   try {
     const userId = req.params.userId;
     // Find the user profile with the given user ID
@@ -39,29 +38,33 @@ async function getUserProfileByUserId(req, res) {
 }
 
 async function updateUserProfileByUserId(req, res) {
+  // const userProfileId = req.params.userId;
+  // console.log(userProfileId)
   const infoId = req.params.id;
   const { profileImage, firstName, lastName, email,userId } = req.body;
-
+  
+  console.log(req.body)
   try {
-    // Find the info profile with the given info ID
-    let profile = await profile.findById({ infoId });
+    // Find the profile with the given info ID
+    let profileToUpdate = await Profile.findById(infoId);
 
-    if (!profile) {
+    if (!profileToUpdate) {
       return res.status(404).json({ error: 'User profile not found.' });
     }
 
     // Update the user profile properties
-    profile.profileImage = profileImage;
-    profile.firstName = firstName;
-    profile.lastName = lastName;
-    profile.email = email;
-    profile.userId = userId;
+    profileToUpdate.profileImage = profileImage;
+    profileToUpdate.firstName = firstName;
+    profileToUpdate.lastName = lastName;
+    profileToUpdate.email = email;
+    profileToUpdate.userId = userId;
 
     // Save the updated user profile to the database
-    await profile.save();
+    await profileToUpdate.save();
 
-    return res.json(profile);
+    return res.json(profileToUpdate);
   } catch (error) {
+    console.log(error);
     return res.status(500).json({ error: 'Failed to update the user profile.' });
   }
 }

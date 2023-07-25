@@ -38,7 +38,7 @@ async function getAllLinks(req, res) {
 // Controller for getting a link by its ID
 async function getLinkById(req, res) {
   const linkId = req.params.id;
-
+  
   try {
     // Find the link with the given ID
     const link = await Link.findById(linkId);
