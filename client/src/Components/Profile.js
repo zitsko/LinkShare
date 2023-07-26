@@ -15,6 +15,7 @@ function Profile() {
     email: "",
   });
   const navigate = useNavigate();
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     if (localStorage.getItem("token")) {
@@ -29,8 +30,8 @@ function Profile() {
             fetchProfileDetails(data.userData._id);
             const storedProfileImage = localStorage.getItem("profileImage");
             if (storedProfileImage) {
-                setProfileImage(storedProfileImage);
-              }
+              setProfileImage(storedProfileImage);
+            }
           } else {
             navigate("/");
           }
@@ -47,9 +48,11 @@ function Profile() {
   const fetchProfileDetails = async (userId) => {
     try {
       console.log("Fetching profile details for user:", userId);
-      const response = await axios.get(`http://localhost:3636/profile/${userId}`);
+      const response = await axios.get(
+        `http://localhost:3636/profile/${userId}`
+      );
       console.log("Response data:", response.data);
-      setProfileDetails(response.data); 
+      setProfileDetails(response.data);
       console.log("Profile details fetched:", profileDetails);
 
       if (response.data.length > 0) {
@@ -61,18 +64,26 @@ function Profile() {
         setProfileImage(profileData.profileImage || "");
         setProfileEmail(profileData.profileEmail);
         localStorage.setItem("profileImage", profileData.profileImage || "");
-        }
-        // Store profile image URL in local storage
+      }
+      // Store profile image URL in local storage
     } catch (error) {
       console.error("Error fetching profile details:", error);
     }
+  };
+
+  // Function to show the modal for a few seconds
+  const showConfirmationModal = () => {
+    setShowModal(true);
+    setTimeout(() => {
+      setShowModal(false);
+    }, 3000); // Change 3000 to the desired duration in milliseconds (e.g., 3000 for 3 seconds)
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     // const profileData = null
     try {
-        const profileData = {
+      const profileData = {
         firstName: firstName,
         lastName: lastName,
         profileImage: profileImage,
@@ -80,14 +91,17 @@ function Profile() {
         userId: user._id,
       };
       console.log("Profile Data:", profileData);
-      
+
       if (profileDetails.length > 0) {
         // If profileDetails array is not empty, it means the user has an existing profile.
-        // Get the _id from one of the profiles (you can choose the first one in this case).
+        // Get the _id from one of the profiles
         profileData._id = profileDetails[0]._id;
-  
+
         // Perform a PUT request to update the profile.
-        await axios.put(`http://localhost:3636/profile/${profileData._id}`, profileData);
+        await axios.put(
+          `http://localhost:3636/profile/${profileData._id}`,
+          profileData
+        );
         console.log("Profile details saved successfully!");
       } else {
         // If profileDetails array is empty, it means the user does not have a profile yet.
@@ -95,11 +109,12 @@ function Profile() {
         await axios.post("http://localhost:3636/profile", profileData);
         console.log("New profile created successfully!");
       }
+
+      showConfirmationModal();
     } catch (error) {
       console.error("Error updating/creating profile details:", error);
     }
   };
-  
 
   return (
     <div>
@@ -118,6 +133,15 @@ function Profile() {
         handleProfileEmailChange={(e) => setProfileEmail(e.target.value)}
         handleSubmit={handleSubmit}
       />
+      {/* Confirmation Modal */}
+      {showModal && (
+        <div className="modal">
+          <div className="modal-content">
+            <h2>Profile Saved!</h2>
+            <p>Your profile details have been successfully saved.</p>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
