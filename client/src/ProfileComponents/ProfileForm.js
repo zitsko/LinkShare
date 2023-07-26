@@ -22,6 +22,7 @@ function ProfileForm({
           value={profileImage}
           onChange={handleProfileImageChange}
         />
+        {profileImage && <img src={profileImage} alt="Profile" />}
       </div>
       <div>
         <label htmlFor="firstName">First Name:</label>

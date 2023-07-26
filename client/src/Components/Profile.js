@@ -27,6 +27,10 @@ function Profile() {
             console.log(data);
             setUser(data.userData);
             fetchProfileDetails(data.userData._id);
+            const storedProfileImage = localStorage.getItem("profileImage");
+            if (storedProfileImage) {
+                setProfileImage(storedProfileImage);
+              }
           } else {
             navigate("/");
           }
@@ -47,15 +51,18 @@ function Profile() {
       console.log("Response data:", response.data);
       setProfileDetails(response.data); 
       console.log("Profile details fetched:", profileDetails);
-    //   if (response.data.length > 0) {
-    //     // If response data object is not empty, it means the user has an existing profile.
-    //     // Set the state variables with the fetched profile data.
-    //     const profileData = response.data;
-    //     setName(profileData.firstName);
-    //     setLastName(profileData.lastName);
-    //     setProfileImage(profileData.profilePhoto);
-    //     setProfileEmail(profileData.email);
-    //   }
+
+      if (response.data.length > 0) {
+        // If response data object is not empty, it means the user has an existing profile.
+        // Set the state variables with the fetched profile data.
+        const profileData = response.data[0];
+        setName(profileData.firstName);
+        setLastName(profileData.lastName);
+        setProfileImage(profileData.profileImage || "");
+        setProfileEmail(profileData.profileEmail);
+        localStorage.setItem("profileImage", profileData.profileImage || "");
+        }
+        // Store profile image URL in local storage
     } catch (error) {
       console.error("Error fetching profile details:", error);
     }
@@ -68,7 +75,7 @@ function Profile() {
         const profileData = {
         firstName: firstName,
         lastName: lastName,
-        profilePhoto: profileImage,
+        profileImage: profileImage,
         profileEmail: profileEmail,
         userId: user._id,
       };
@@ -81,7 +88,7 @@ function Profile() {
   
         // Perform a PUT request to update the profile.
         await axios.put(`http://localhost:3636/profile/${profileData._id}`, profileData);
-        console.log("Profile details updated successfully!");
+        console.log("Profile details saved successfully!");
       } else {
         // If profileDetails array is empty, it means the user does not have a profile yet.
         // Perform a POST request to create a new profile.
