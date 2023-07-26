@@ -13,6 +13,9 @@ function Links() {
   const [selectedLink, setSelectedLink] = useState({}); // Provide a default value as an empty object
   const [linkUrl, setLinkUrl] = useState(""); // State for the link input
   const [showLinkForm, setShowLinkForm] = useState(false); //manage the visibility of LinkForm
+  const [showStartInfo, setShowStartInfo] = useState(true);//manage the visibility of start info section
+  const [isLoading, setIsLoading] = useState(true); //manage flickering issues when fetch
+
   const navigate = useNavigate();
   const [user, setUser] = useState({
     _id: "",
@@ -51,8 +54,11 @@ function Links() {
       const response = await axios.get(`http://localhost:3636/links/${userId}`);
       console.log("Response data:", response.data);
       setLinks(response.data);
+      setShowStartInfo(response.data.length === 0);
+      setIsLoading(false); //once data is fetched
     } catch (error) {
       console.error("Error fetching links:", error);
+      setIsLoading(false);
     }
   };
 
@@ -154,9 +160,13 @@ function Links() {
   };
 
   return (
+
     <div className="links-navbar-container">
       <MainNavbar />
-      <div>
+      
+        {!isLoading && (
+          <div>
+       
         <h1>Customize Your Links in LinkShare!</h1>
         <p>
           Easily add, edit, or remove links below to create your personalized
@@ -187,18 +197,20 @@ function Links() {
         />
 
         {/* Initial content before adding links */}
-        <div
-          className="start-info-section"
-          style={{ display: showLinkForm ? "none" : "block" }}
-        >
-          <h2>Let's get started!</h2>
-          <p>
-            Use the “Add new link” button to get started. Once you have more
-            than one link, you can reorder and edit them. We're here to help you
-            share your profiles with everyone!{" "}
-          </p>
-        </div>
+        {showStartInfo && (
+          <div className="start-info-section"
+          style={{ display: showLinkForm ? "none" : "block" }}>
+            
+            <h2>Let's get started!</h2>
+            <p>
+              Use the “Add new link” button to get started. Once you have more
+              than one link, you can reorder and edit them. We're here to help
+              you share your profiles with everyone!{" "}
+            </p>
+          </div>
+        )}
       </div>
+ )}
     </div>
   );
 }
