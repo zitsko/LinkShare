@@ -3,14 +3,14 @@ const Profile = require('../modules/profile');
 async function createUserProfile(req, res) {
   // console.log(req.body)
   try {
-    const { profileImage, firstName, lastName, email, userId } = req.body;
+    const { profileImage, firstName, lastName, profileEmail, userId } = req.body;
 
     // Create a new user profile using the Profile model
     const newProfile = await Profile.create({
       profileImage,
       firstName,
       lastName,
-      email,
+      profileEmail,
       userId,
     });
 
@@ -41,7 +41,7 @@ async function updateUserProfileByUserId(req, res) {
   // const userProfileId = req.params.userId;
   // console.log(userProfileId)
   const infoId = req.params.id;
-  const { profileImage, firstName, lastName, email,userId } = req.body;
+  const { profileImage, firstName, lastName, profileEmail,userId } = req.body;
   
   console.log(req.body)
   try {
@@ -56,7 +56,7 @@ async function updateUserProfileByUserId(req, res) {
     profileToUpdate.profileImage = profileImage;
     profileToUpdate.firstName = firstName;
     profileToUpdate.lastName = lastName;
-    profileToUpdate.email = email;
+    profileToUpdate.profileEmail = profileEmail;
     profileToUpdate.userId = userId;
 
     // Save the updated user profile to the database
