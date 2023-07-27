@@ -68,6 +68,14 @@ function Links() {
     setShowLinkForm(true);
   };
 
+  const handleCancel = () => {
+    setShowLinkForm(false); // Hide the form
+    // You can also clear the form fields if needed:
+    setPlatform("");
+    setCustomPlatform("");
+    setLinkUrl("");
+  };
+
   const handlePlatformChange = (e) => {
     setPlatform(e.target.value);
   };
@@ -189,6 +197,7 @@ function Links() {
             handleLinkURLChange={handleLinkURLChange}
             handleSubmit={handleSubmit}
             handleDeleteAllLinks={handleDeleteAllLinks}
+            handleCancel={handleCancel}
           />
         )}
         <LinkList

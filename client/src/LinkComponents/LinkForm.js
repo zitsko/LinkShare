@@ -9,6 +9,7 @@ function LinkForm({
   handleCustomPlatformChange,
   handleLinkURLChange,
   handleSubmit,
+  handleCancel,
 }) {
   return (
     <form>
@@ -57,6 +58,10 @@ function LinkForm({
       {/* Submit button */}
       <button type="submit" onClick={handleSubmit}>
         Save
+      </button>
+      
+      <button type="button" onClick={handleCancel}>
+        Cancel
       </button>
     </form>
   );
