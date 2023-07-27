@@ -9,7 +9,6 @@ function LinkForm({
   handleCustomPlatformChange,
   handleLinkURLChange,
   handleSubmit,
-  handleDeleteAllLinks,
 }) {
   return (
     <form>
@@ -59,10 +58,8 @@ function LinkForm({
       <button type="submit" onClick={handleSubmit}>
         Save
       </button>
-      <button onClick={handleDeleteAllLinks}>Delete All Links</button>
     </form>
   );
 }
 
 export default LinkForm;
-

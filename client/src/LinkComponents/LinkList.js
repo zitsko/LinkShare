@@ -1,4 +1,3 @@
-
 import React from "react";
 import LinkListItem from "./LinkListItem";
 
@@ -18,4 +17,3 @@ function LinkList({ links, handleEditLink, handleDeleteLink }) {
 }
 
 export default LinkList;
-

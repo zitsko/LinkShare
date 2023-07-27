@@ -153,6 +153,7 @@ function Links() {
     if (shouldDeleteAll) {
       try {
         await axios.delete("http://localhost:3636/links");
+        setLinks([]);
       } catch (error) {
         console.error("Failed to delete all links:", error);
       }
@@ -195,6 +196,10 @@ function Links() {
           handleEditLink={handleEditLink}
           handleDeleteLink={handleDeleteLink}
         />
+
+      {links.length > 0 && (
+        <button onClick={handleDeleteAllLinks}>Delete All Links</button>
+      )}
 
         {/* Initial content before adding links */}
         {showStartInfo && (
