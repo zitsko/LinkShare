@@ -1,17 +1,24 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import React from "react";
+import { useNavigate } from "react-router-dom";
 
-function PreviewNavbar() {
+function PreviewNavbar({ handleShareLinks, showConfirmationModal }) {
   const navigate = useNavigate();
 
   return (
     <nav>
-      <ul>
+      <ul className="preview-navbar-container">
         <li>
-          <button onClick={() => navigate('/links')}>Back to Links</button>
+          <button onClick={() => navigate("/links")}>Back to Links</button>
         </li>
         <li>
-          <button >Share Links</button>
+          <button
+            onClick={() => {
+              handleShareLinks();
+              showConfirmationModal();
+            }}
+          >
+            Share Links
+          </button>{" "}
         </li>
       </ul>
     </nav>

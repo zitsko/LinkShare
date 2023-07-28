@@ -28,10 +28,10 @@ function Profile() {
             console.log(data);
             setUser(data.userData);
             fetchProfileDetails(data.userData._id);
-            const storedProfileImage = localStorage.getItem("profileImage");
-            if (storedProfileImage) {
-              setProfileImage(storedProfileImage);
-            }
+            // const storedProfileImage = localStorage.getItem("profileImage");
+            // if (storedProfileImage) {
+            //   setProfileImage(storedProfileImage);
+            // }
           } else {
             navigate("/");
           }
@@ -63,7 +63,7 @@ function Profile() {
         setLastName(profileData.lastName);
         setProfileImage(profileData.profileImage || "");
         setProfileEmail(profileData.profileEmail);
-        localStorage.setItem("profileImage", profileData.profileImage || "");
+        // localStorage.setItem("profileImage", profileData.profileImage || "");
       }
       // Store profile image URL in local storage
     } catch (error) {
