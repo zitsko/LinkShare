@@ -117,7 +117,7 @@ function Profile() {
   };
 
   return (
-    <div>
+    <div className="profile-container">
       <MainNavbar />
       <h1>Profile Details</h1>
 
