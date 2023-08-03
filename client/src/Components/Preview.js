@@ -1,18 +1,23 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate} from "react-router-dom";
 import PreviewNavbar from "../Navbars/PreviewNavbar";
 import axios from "axios";
+import ImagePreview from "./ImagePreview";
 
-function Preview() {
+function Preview({ uploadedImg }) {
+  console.log("uploadedImg prop in Preview:", uploadedImg);
   const [links, setLinks] = useState([]);
   const [profileDetails, setProfileDetails] = useState({});
   const [showProfileSavedModal, setShowProfileSavedModal] = useState(false);
+
+
   const navigate = useNavigate();
   const [user, setUser] = useState({
     _id: "",
     email: "",
   });
 
+ 
   useEffect(() => {
     if (localStorage.getItem("token")) {
       axios
@@ -75,7 +80,6 @@ function Preview() {
     const formattedProfileDetails = `
           ${profileDetails.firstName} ${profileDetails.lastName}
           ${profileDetails.profileEmail}
-          ${profileDetails.profileImage || "N/A"}
         `;
 
     const contentToCopy =
@@ -100,17 +104,17 @@ function Preview() {
       
   
   return (
-    <div className="preview-container">
+    
+    <div className="preview-container">     
       <PreviewNavbar handleShareLinks={handleShareLinks} showConfirmationModal={showConfirmationModal} />
-      {/* Display profile details */}
+    
       <h1>Profile Preview</h1>
-      {profileDetails.profileImage && (
-        <img src={profileDetails.profileImage} alt="Profile" />
-      )}
-      <p> {profileDetails.firstName} {profileDetails.lastName}</p>
-      <p> {profileDetails.profileEmail}</p>
 
-      {/* Display links */}
+      {uploadedImg && <ImagePreview uploadedImg={uploadedImg} />}
+
+      <p> {profileDetails.firstName} {profileDetails.lastName}</p>
+      <p> {profileDetails.profileEmail}</p>  
+
       {links.length > 0 ? (
         <ul>
           {links.map((link) => (
@@ -123,6 +127,8 @@ function Preview() {
       ) : (
         <p>No links found.</p>
       )}
+
+      {/* <Links /> */}
       {showProfileSavedModal && (
   <div className="share-links-modal">
     <div className="share-links-modal-content">

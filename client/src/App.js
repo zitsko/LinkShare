@@ -4,6 +4,7 @@ import Signup from "./Components/Signup";
 import Profile from "./Components/Profile";
 import Links from "./Components/Links"
 import Preview from "./Components/Preview"
+import ImagePreview from "./Components/ImagePreview";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
             <Route path="/profile" element={<Profile />} />
             <Route path="/links" element={<Links />} />
             <Route path="/preview" element={<Preview />} />
+            <Route path = "images" element = {<ImagePreview />} />
           </Routes>
         </div>
       </Router>

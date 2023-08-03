@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, } from "react-router-dom";
 import MainNavbar from "../Navbars/MainNavbar";
 import axios from "axios";
 import ProfileForm from "../ProfileComponents/ProfileForm";
 
+
 function Profile() {
   const [firstName, setName] = useState("");
   const [lastName, setLastName] = useState("");
-  const [file,setFile] = useState("")
+  const [file, setFile] = useState("");
   const [imageUrl, setImageUrl] = useState("");
+  const [uploadedImg, setUploadedImg] = useState("");
   const [profileEmail, setProfileEmail] = useState("");
   const [profileDetails, setProfileDetails] = useState({});
   const [user, setUser] = useState({
@@ -49,15 +51,14 @@ function Profile() {
         `http://localhost:3636/profile/${userId}`
       );
       setProfileDetails(response.data);
-      
 
       if (response.data.length > 0) {
         // If response data object is not empty, it means the user has an existing profile.
         // Set the state variables with the fetched profile data.
         const profileData = response.data[0];
+        setImageUrl(profileData.imageURL);
         setName(profileData.firstName);
         setLastName(profileData.lastName);
-        // setProfileImage(profileData.profileImage || "");
         setProfileEmail(profileData.profileEmail);
       }
     } catch (error) {
@@ -73,89 +74,96 @@ function Profile() {
     }, 3000); // Change 3000 to the desired duration in milliseconds (e.g., 3000 for 3 seconds)
   };
 
-  const previewFiles= (file) =>{
-    const reader = new FileReader()
-    reader.readAsDataURL(file)
-    reader.onloadend = () =>{
+  const previewFiles = (file) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onloadend = () => {
       setImageUrl(reader.result);
-    }
-  }
-
- const handleProfileImageChange = (e) =>{
-  const file = (e.target.files[0])
-  setFile(file)
-  previewFiles(file)
- }
-
- const handleSubmit = async (event) => {
-  event.preventDefault();
-
-  try {
-    const formData = new FormData();
-    formData.append("file", file);
-    formData.append("upload_preset", "unsigned");
-    const imageResponse = await axios.post(
-      "https://api.cloudinary.com/v1_1/dxhce0ar1/image/upload",
-      formData,
-      // {
-      //   headers: {
-      //     "Content-Type": "multipart/form-data",
-      //   },
-      // }
-    );
-
-    // Extract the Cloudinary URL for the uploaded image
-    const imageUrl = imageResponse.data.secure_url;
-
-    // Create or update the user profile with the profile details and the Cloudinary URL
-    const profileData = {
-      firstName: firstName,
-      lastName: lastName,
-      profileImage: imageUrl,
-      profileEmail: profileEmail,
-      userId: user._id,
     };
+  };
 
-    // Now, perform a separate API call to the backend to handle the profile details
-    if (profileDetails.length > 0) {
-      // User already has a profile, update it
-      profileData._id = profileDetails[0]._id;
-      await axios.put(
-        `http://localhost:3636/profile/${profileData._id}`,
-        profileData
+  const handleProfileImageChange = (e) => {
+    const file = e.target.files[0];
+    setFile(file);
+    previewFiles(file);
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    try {
+      const formData = new FormData();
+      formData.append("file", file);
+      formData.append("upload_preset", "unsigned");
+      const imageResponse = await axios.post(
+        "https://api.cloudinary.com/v1_1/dxhce0ar1/image/upload",
+        formData
       );
-    } else {
-      // User doesn't have a profile yet, create a new one
-      await axios.post("http://localhost:3636/profile", profileData);
-      console.log("New profile created successfully!");
+      // Extract the Cloudinary URL for the uploaded image
+      const imageUrl = imageResponse.data.secure_url;
+
+      //extract public_id of uploaded image
+      const uploadedImg = imageResponse.data.public_id;
+      console.log("imageUrl:", imageUrl);
+      console.log("uploadedImg:", uploadedImg);
+      setUploadedImg(uploadedImg);
+  
+
+      // Create or update the user profile with the profile details and the Cloudinary URL
+      const profileData = {
+        firstName: firstName,
+        lastName: lastName,
+        profileImage: imageUrl,
+        profileEmail: profileEmail,
+        userId: user._id,
+      };
+
+      // Now, perform a separate API call to the backend to handle the profile details
+      if (profileDetails.length > 0) {
+        // User already has a profile, update it
+        profileData._id = profileDetails[0]._id;
+        await axios.put(
+          `http://localhost:3636/profile/${profileData._id}`,
+          profileData
+        );
+      } else {
+        // User doesn't have a profile yet, create a new one
+        await axios.post("http://localhost:3636/profile", profileData);
+        console.log("New profile created successfully!");
+      }
+
+      // Show the confirmation modal after successful submission
+      showConfirmationModal();
+    } catch (error) {
+      console.error(
+        "Error uploading image or updating/creating profile:",
+        error
+      );
     }
-
-    // Show the confirmation modal after successful submission
-    showConfirmationModal();
-  } catch (error) {
-    console.error("Error uploading image or updating/creating profile:", error);
-  }
-};
-
-
+  };
+ 
   return (
     <div className="profile-container">
       <MainNavbar />
-      <h1>Profile Details</h1>
-      <img src={imageUrl} alt="" />
 
-      {/* Render ProfileForm to allow the user to edit and save the profile data */}
-      <ProfileForm
-        firstName={firstName}
-        lastName={lastName}
-        // profileImage={profileImage}
-        profileEmail={profileEmail}
-        handleFirstNameChange={(e) => setName(e.target.value)}
-        handleLastNameChange={(e) => setLastName(e.target.value)}
-        handleProfileImageChange={handleProfileImageChange}
-        handleProfileEmailChange={(e) => setProfileEmail(e.target.value)}
-        handleSubmit={handleSubmit}
-      />
+      <div className="profile-details-container">
+        <h1>Profile Details</h1>
+        {imageUrl && <img src={imageUrl} alt="" className="profile-image" />}
+
+        {/* Render ProfileForm to allow the user to edit and save the profile data */}
+        <ProfileForm
+          firstName={firstName}
+          lastName={lastName}
+          profileEmail={profileEmail}
+          handleFirstNameChange={(e) => setName(e.target.value)}
+          handleLastNameChange={(e) => setLastName(e.target.value)}
+          handleProfileImageChange={handleProfileImageChange}
+          handleProfileEmailChange={(e) => setProfileEmail(e.target.value)}
+          handleSubmit={handleSubmit}
+        />
+      </div>
+     
+
       {/* Confirmation Modal */}
       {showModal && (
         <div className="modal">
