@@ -11,5 +11,7 @@ router.get('/:userId', profileController.getUserProfileByUserId);
 // Route for updating a user profile by user ID
 router.put('/:id', profileController.updateUserProfileByUserId);
 
+router.post('/image/upload', profileController.uploadImageToCloudinary);
+
 module.exports = router;
 

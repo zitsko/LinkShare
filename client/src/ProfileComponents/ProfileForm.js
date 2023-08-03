@@ -1,7 +1,7 @@
 import React from "react";
 
 function ProfileForm({
-  profileImage,
+  imageUrl,
   firstName,
   lastName,
   profileEmail,
@@ -14,16 +14,17 @@ function ProfileForm({
   return (
     <form>
       <div>
-        <label htmlFor="profileImage">Profile Image:</label>
+        <label htmlFor="imageURL">Profile Image:</label>
         <input
-          type="text"
-          id="profileImage"
-          name="profileImage"
-          value={profileImage}
+          type="file"
+          id="imageURL"
+           name="imageURL"
           onChange={handleProfileImageChange}
+          accept="image/png, image/jpeg, image/jpg, image/jfif"
         />
-        {profileImage && <img src={profileImage} alt="Profile" />}
+        {imageUrl && <img src={imageUrl} alt="Profile" />}
       </div>
+
       <div>
         <label htmlFor="firstName">First Name:</label>
         <input

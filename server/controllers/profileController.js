@@ -1,13 +1,33 @@
 const Profile = require('../modules/profile');
+const cloudinary = require('../cloudinary')
+
+async function uploadImageToCloudinary(req, res) {
+  console.log("hello")
+  try {
+    const imageUrl = req.body.imageUrl;
+
+    const uploadedImage = await cloudinary.uploader.upload(imageUrl, {
+      upload_preset: 'unsigned',
+      allowed_formats: ['png', 'jpg', 'jpeg', 'svg', 'ico', 'jfif', 'webp'],
+    });
+
+    const secureUrl = uploadedImage.secure_url;
+    return res.status(200).json(secureUrl);
+  } catch (error) {
+    console.log('Error uploading image to Cloudinary:', error);
+    return res.status(500).json({ error: 'Failed to upload image to Cloudinary.' });
+  }
+}
+
 
 async function createUserProfile(req, res) {
-  // console.log(req.body)
+  console.log(req.body)
   try {
     const { profileImage, firstName, lastName, profileEmail, userId } = req.body;
 
     // Create a new user profile using the Profile model
     const newProfile = await Profile.create({
-      profileImage,
+      imageURL: profileImage,
       firstName,
       lastName,
       profileEmail,
@@ -38,12 +58,10 @@ async function getUserProfileByUserId(req, res) {
 }
 
 async function updateUserProfileByUserId(req, res) {
-  // const userProfileId = req.params.userId;
-  // console.log(userProfileId)
   const infoId = req.params.id;
   const { profileImage, firstName, lastName, profileEmail,userId } = req.body;
   
-  console.log(req.body)
+  // console.log(req.body)
   try {
     // Find the profile with the given info ID
     let profileToUpdate = await Profile.findById(infoId);
@@ -53,7 +71,7 @@ async function updateUserProfileByUserId(req, res) {
     }
 
     // Update the user profile properties
-    profileToUpdate.profileImage = profileImage;
+    profileToUpdate.imageURL = profileImage; // Update imageURL with the Cloudinary URL
     profileToUpdate.firstName = firstName;
     profileToUpdate.lastName = lastName;
     profileToUpdate.profileEmail = profileEmail;
@@ -73,4 +91,5 @@ module.exports = {
   createUserProfile,
   getUserProfileByUserId,
   updateUserProfileByUserId,
+  uploadImageToCloudinary,
 };
