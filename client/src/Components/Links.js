@@ -167,6 +167,15 @@ function Links() {
       }
     }
   };
+  function logout() {
+    const shouldLogout = window.confirm(
+      "You are about to leave ,are you sure?"
+    );
+    if(shouldLogout){
+      localStorage.removeItem("token");
+      navigate("/");
+    }   
+  }
 
   return (
 
@@ -177,6 +186,14 @@ function Links() {
           <div>
        
         <h1>Customize Your Links in LinkShare!</h1>
+        <button
+          className="logout-btn"
+          onClick={() => {
+            logout();
+          }}
+        >
+          Logout
+        </button>
         <p>
           Easily add, edit, or remove links below to create your personalized
           profile. Share your favorite platforms, websites, and portfolios with
