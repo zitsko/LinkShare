@@ -100,14 +100,13 @@ function Profile() {
         formData
       );
       // Extract the Cloudinary URL for the uploaded image
-      const imageUrl = imageResponse.data.secure_url;
+      const imageURL = imageResponse.data.secure_url;
+      console.log("imageUrl:",imageURL);
 
       //extract public_id of uploaded image
       const uploadedImg = imageResponse.data.public_id;
-      console.log("imageUrl:", imageUrl);
       console.log("uploadedImg:", uploadedImg);
       setUploadedImg(uploadedImg);
-  
 
       // Create or update the user profile with the profile details and the Cloudinary URL
       const profileData = {
@@ -162,7 +161,6 @@ function Profile() {
           handleSubmit={handleSubmit}
         />
       </div>
-     
 
       {/* Confirmation Modal */}
       {showModal && (

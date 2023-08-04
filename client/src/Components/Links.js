@@ -31,7 +31,6 @@ function Links() {
         })
         .then(({ data }) => {
           if (data.userData._id) {
-            console.log(data);
             setUser(data.userData);
             fetchLinks(data.userData._id); // Pass the user ID to fetchLinks function
           } else {
@@ -50,9 +49,9 @@ function Links() {
   // Fetch all links from the backend based on user ID
   const fetchLinks = async (userId) => {
     try {
-      console.log("Fetching links for user:", userId);
+      // console.log("Fetching links for user:", userId);
       const response = await axios.get(`http://localhost:3636/links/${userId}`);
-      console.log("Response data:", response.data);
+      // console.log("Response data:", response.data);
       setLinks(response.data);
       setShowStartInfo(response.data.length === 0);
       setIsLoading(false); //once data is fetched
@@ -70,7 +69,6 @@ function Links() {
 
   const handleCancel = () => {
     setShowLinkForm(false); // Hide the form
-    // You can also clear the form fields if needed:
     setPlatform("");
     setCustomPlatform("");
     setLinkUrl("");

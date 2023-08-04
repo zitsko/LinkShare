@@ -14,7 +14,7 @@ function MainNavbar() {
           <button onClick={() => navigate('/profile')}>Profile</button>
         </li>
         <li>
-          <button onClick={() => navigate('/preview')}>Preview</button>
+          <button onClick={() => navigate('/preview/')}>Preview</button>
         </li>
       </ul>
     </nav>

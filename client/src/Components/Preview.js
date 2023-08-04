@@ -1,16 +1,13 @@
 import { useState, useEffect } from "react";
-import { useNavigate} from "react-router-dom";
+import { useNavigate ,useParams} from "react-router-dom";
 import PreviewNavbar from "../Navbars/PreviewNavbar";
 import axios from "axios";
-import ImagePreview from "./ImagePreview";
+// import ImagePreview from "./ImagePreview";
 
-function Preview({ uploadedImg }) {
-  console.log("uploadedImg prop in Preview:", uploadedImg);
+function Preview() {
   const [links, setLinks] = useState([]);
   const [profileDetails, setProfileDetails] = useState({});
   const [showProfileSavedModal, setShowProfileSavedModal] = useState(false);
-
-
   const navigate = useNavigate();
   const [user, setUser] = useState({
     _id: "",
@@ -26,7 +23,6 @@ function Preview({ uploadedImg }) {
         })
         .then(({ data }) => {
           if (data.userData._id) {
-            console.log(data);
             setUser(data.userData);
             fetchLinks(data.userData._id);
             fetchProfileDetails(data.userData._id);
@@ -43,15 +39,16 @@ function Preview({ uploadedImg }) {
     }
   }, []);
 
+
+
   const fetchProfileDetails = async (userId) => {
     try {
-      console.log("Fetching profile details for user:", userId);
       const response = await axios.get(
         `http://localhost:3636/profile/${userId}`
       );
       console.log("Response data:", response.data);
       setProfileDetails(response.data[0]); // Assuming the API returns an array of profiles we take the first one
-      console.log("Profile details fetched:", profileDetails);
+      
     } catch (error) {
       console.error("Error fetching profile details:", error);
     }
@@ -59,9 +56,7 @@ function Preview({ uploadedImg }) {
 
   const fetchLinks = async (userId) => {
     try {
-      console.log("Fetching links for user:", userId);
       const response = await axios.get(`http://localhost:3636/links/${userId}`);
-      console.log("Response data:", response.data);
       setLinks(response.data);
     } catch (error) {
       console.error("Error fetching links:", error);
@@ -109,8 +104,9 @@ function Preview({ uploadedImg }) {
       <PreviewNavbar handleShareLinks={handleShareLinks} showConfirmationModal={showConfirmationModal} />
     
       <h1>Profile Preview</h1>
+      {/* {uploadedImg && <ImagePreview uploadedImg={uploadedImg} />} */}
 
-      {uploadedImg && <ImagePreview uploadedImg={uploadedImg} />}
+      <img src={profileDetails.imageURL} alt="" />
 
       <p> {profileDetails.firstName} {profileDetails.lastName}</p>
       <p> {profileDetails.profileEmail}</p>  

@@ -4,9 +4,9 @@ const cloudinary = require('../cloudinary')
 async function uploadImageToCloudinary(req, res) {
   console.log("hello")
   try {
-    const imageUrl = req.body.imageUrl;
+    const imageURL = req.body.imageURL;
 
-    const uploadedImage = await cloudinary.uploader.upload(imageUrl, {
+    const uploadedImage = await cloudinary.uploader.upload(imageURL, {
       upload_preset: 'unsigned',
       allowed_formats: ['png', 'jpg', 'jpeg', 'svg', 'ico', 'jfif', 'webp'],
     });
