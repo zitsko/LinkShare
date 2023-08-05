@@ -8,6 +8,7 @@ import "./Styles/Links.css"
 import "./Styles/Preview.css"
 import "./Styles/MainNavbar.css"
 import "./Styles/PreviewNavbar.css"
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>

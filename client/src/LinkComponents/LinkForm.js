@@ -56,11 +56,11 @@ function LinkForm({
       </div>
 
       {/* Submit button */}
-      <button type="submit" onClick={handleSubmit}>
+      <button type="submit" onClick={handleSubmit} className="btn primary-btn">
         Save
       </button>
       
-      <button type="button" onClick={handleCancel}>
+      <button type="button" onClick={handleCancel} className="btn no-background-btn">
         Cancel
       </button>
     </form>

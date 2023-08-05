@@ -185,7 +185,7 @@ function Links() {
        
         <h1>Customize Your Links in LinkShare!</h1>
         <button
-          className="logout-btn"
+          className="btn intense-btn"
           onClick={() => {
             logout();
           }}
@@ -198,7 +198,7 @@ function Links() {
           the world in one convenient place. Show off your digital presence with
           style!
         </p>
-        <button onClick={handleAddLink}>+Add a new link</button>
+        <button onClick={handleAddLink} className="btn big-btn no-background-btn">+Add a new link</button>
 
         {/* Render LinkForm if showLinkForm is true */}
 
@@ -222,7 +222,7 @@ function Links() {
         />
 
       {links.length > 0 && (
-        <button onClick={handleDeleteAllLinks}>Delete All Links</button>
+        <button onClick={handleDeleteAllLinks} className="btn intense-btn">Delete All Links</button>
       )}
 
         {/* Initial content before adding links */}

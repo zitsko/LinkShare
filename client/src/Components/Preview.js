@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useNavigate ,useParams} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import PreviewNavbar from "../Navbars/PreviewNavbar";
 import axios from "axios";
 // import ImagePreview from "./ImagePreview";
@@ -102,29 +102,26 @@ function Preview() {
     
     <div className="preview-container">     
       <PreviewNavbar handleShareLinks={handleShareLinks} showConfirmationModal={showConfirmationModal} />
-    
-      <h1>Profile Preview</h1>
-      {/* {uploadedImg && <ImagePreview uploadedImg={uploadedImg} />} */}
+<div className="profile-links-container">  
+    <h1>Profile Preview</h1>
+    {/* {uploadedImg && <ImagePreview uploadedImg={uploadedImg} />} */}
+    <img src={profileDetails.imageURL} alt="" className="profile-image" />
+    <p> {profileDetails.firstName} {profileDetails.lastName}</p>
+    <p> {profileDetails.profileEmail}</p>
+    {links.length > 0 ? (
+      <ul>
+        {links.map((link) => (
+          <li key={link._id}>
+            <p>{link.customPlatform || link.platform}</p>{" "}
+            <p>{link.url}</p>
+          </li>
+        ))}
+      </ul>
+    ) : (
+      <p>No links found.</p>
+    )}
+</div>
 
-      <img src={profileDetails.imageURL} alt="" />
-
-      <p> {profileDetails.firstName} {profileDetails.lastName}</p>
-      <p> {profileDetails.profileEmail}</p>  
-
-      {links.length > 0 ? (
-        <ul>
-          {links.map((link) => (
-            <li key={link._id}>
-              <p>{link.customPlatform || link.platform}</p>{" "}
-              <p>{link.url}</p>
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <p>No links found.</p>
-      )}
-
-      {/* <Links /> */}
       {showProfileSavedModal && (
   <div className="share-links-modal">
     <div className="share-links-modal-content">

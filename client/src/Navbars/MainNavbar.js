@@ -8,13 +8,13 @@ function MainNavbar() {
     <nav>
       <ul className='main-navbar-container'>
         <li>
-          <button onClick={() => navigate('/links')}>Links</button>
+          <button onClick={() => navigate('/links')} className='btn light-btn'>Links</button>
         </li>
         <li>
-          <button onClick={() => navigate('/profile')}>Profile</button>
+          <button onClick={() => navigate('/profile')} className='btn light-btn'>Profile</button>
         </li>
         <li>
-          <button onClick={() => navigate('/preview/')}>Preview</button>
+          <button onClick={() => navigate('/preview/')} className='btn light-btn'>Preview</button>
         </li>
       </ul>
     </nav>
