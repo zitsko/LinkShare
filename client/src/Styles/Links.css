@@ -22,3 +22,14 @@
   display: flex;
   gap:2rem;
 }
+
+.link-list-item-container{
+  display: flex;
+  justify-content: space-between;
+  border: 2px solid;
+}
+.edit-delete-btn-container{
+  display: flex;
+  flex-direction: column;
+  gap:0.6rem;
+}

@@ -59,6 +59,12 @@ code {
   background-color: var(--clr-intense);
 }
 
+/* .circle-btn{
+  border-radius: var(--br-circle);
+  width:50px;
+  height: 50px;
+  text-align: center;
+} */
 
 /* inputs and dropdown for links profile and preview */
 input,select{
