@@ -1,7 +1,24 @@
-
-
 .links-navbar-container {
-    max-width: 37.5rem;
-    margin: 0 auto;
-    padding: 1.25rem;
-  }
+  max-width: 37.5rem;
+  margin: 0 auto;
+  padding: 1.25rem;
+}
+
+.links-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.platform-link-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.save-cancel-btn-container{
+  margin-top:var(--mt);
+  display: flex;
+  gap:2rem;
+}

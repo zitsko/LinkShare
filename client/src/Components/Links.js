@@ -181,17 +181,10 @@ function Links() {
       <MainNavbar />
       
         {!isLoading && (
-          <div>
+          <div className="links-container">
        
         <h1>Customize Your Links in LinkShare!</h1>
-        <button
-          className="btn intense-btn"
-          onClick={() => {
-            logout();
-          }}
-        >
-          Logout
-        </button>
+       
         <p>
           Easily add, edit, or remove links below to create your personalized
           profile. Share your favorite platforms, websites, and portfolios with
@@ -222,8 +215,16 @@ function Links() {
         />
 
       {links.length > 0 && (
-        <button onClick={handleDeleteAllLinks} className="btn intense-btn">Delete All Links</button>
+        <button onClick={handleDeleteAllLinks} className="btn intense-btn ">Delete All Links</button>
       )}
+       <button
+          className="btn intense-btn "
+          onClick={() => {
+            logout();
+          }}
+        >
+          Logout
+        </button>
 
         {/* Initial content before adding links */}
         {showStartInfo && (

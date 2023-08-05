@@ -18,13 +18,14 @@ code {
   --clr-intense: #dc3545;
   --clr-light:#6c757d;
   --clr-primary:#633cff;
-  --text-color: #333;
-  --header-font-size: 24px;
+  --br: 0.3125rem;
+  --br-circle: 50%;
+  --mt:0.75rem;
 }
 
 .btn{
   padding: 0.5625rem 0.9375rem;
-  border-radius: 0.3125rem;
+  border-radius: var(--br);
   color: var(--clr-white);
   font-size: 1rem;
   cursor: pointer;
@@ -39,12 +40,13 @@ code {
   background-color: var(--clr-primary);
 }
 
-.no-background-btn{
+.no-background-btn,
+.no-background-intense-btn{
   background-color: var(--clr-white);
   color:var(--clr-primary);
   border:2px solid var(--clr-primary);
 }
-.no-background-btn:hover{
+.no-background-intense-btn:hover{
   background-color: var(--clr-intense);
   color: var(--clr-white);
   border: none;
@@ -58,6 +60,13 @@ code {
 }
 
 
+/* inputs and dropdown for links profile and preview */
+input,select{
+  padding: 0.7rem 1.2rem;
+  border-radius: var(--br);
+  border: 2px solid var(--clr-light);
+  width: 50%;
+}
 ul{
   list-style-type: none;
 }

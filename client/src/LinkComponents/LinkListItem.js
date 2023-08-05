@@ -9,7 +9,7 @@ function LinkListItem({ link, handleEditLink, handleDeleteLink }) {
       <p>Platform: {link.customPlatform || link.platform}</p>
       <p>URL: {link.url}</p>
       <button onClick={() => handleEditLink(link)} className="btn primary-btn">Edit</button>
-      <button onClick={() => handleDeleteLink(link._id)} className="btn no-background-btn">Delete</button>
+      <button onClick={() => handleDeleteLink(link._id)} className="btn no-background-intense-btn">Delete</button>
     </div>
   );
 }
