@@ -181,7 +181,7 @@ function Links() {
       <MainNavbar />
       
         {!isLoading && (
-          <div className="links-container">
+          <div className="links-container flex-col">
        
         <h1>Customize Your Links in LinkShare!</h1>
        
@@ -191,6 +191,7 @@ function Links() {
           the world in one convenient place. Show off your digital presence with
           style!
         </p>
+        
         <button onClick={handleAddLink} className="btn big-btn no-background-btn">+Add a new link</button>
 
         {/* Render LinkForm if showLinkForm is true */}
@@ -215,7 +216,7 @@ function Links() {
         />
 
       {links.length > 0 && (
-        <button onClick={handleDeleteAllLinks} className="btn intense-btn ">Delete All Links</button>
+        <button onClick={handleDeleteAllLinks} className="btn no-background-intense-btn ">Delete All Links</button>
       )}
        <button
           className="btn intense-btn "

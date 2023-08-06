@@ -1,9 +1,5 @@
-
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-  sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -12,17 +8,23 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
   monospace;
 }
-
+/*---- Variables ------*/
 :root {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  --fs-text: 0.8125rem;
   --clr-white: #fff;
   --clr-intense: #dc3545;
   --clr-light:#6c757d;
   --clr-primary:#633cff;
+  --clr-background:#efebff;
   --br: 0.3125rem;
   --br-circle: 50%;
-  --mt:0.75rem;
+  --m12:0.75rem;
+  --p12: 0.75rem;
 }
 
+/*---- Buttons ----*/
 .btn{
   padding: 0.5625rem 0.9375rem;
   border-radius: var(--br);
@@ -59,20 +61,40 @@ code {
   background-color: var(--clr-intense);
 }
 
-/* .circle-btn{
-  border-radius: var(--br-circle);
-  width:50px;
-  height: 50px;
-  text-align: center;
-} */
-
+.same-background-btn{
+  background-color: var(--clr-background);
+  color:var(--clr-primary);
+  font-weight: bold;
+}
+/* Typography */
+.size-text{
+  font-size: var(--fs-text);
+}
 /* inputs and dropdown for links profile and preview */
-input,select{
+input,.platform-dropdown{
   padding: 0.7rem 1.2rem;
   border-radius: var(--br);
   border: 2px solid var(--clr-light);
   width: 50%;
 }
+
+
+/* Backgrounds */
+.items-background{
+  background-color: var(--clr-background);
+}
+
+/* Layouts */
+.flex-col{
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
 ul{
   list-style-type: none;
+}
+::placeholder{
+  color: var(--clr-light);
+  font-size: 1rem;
 }

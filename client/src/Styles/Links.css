@@ -1,35 +1,41 @@
 .links-navbar-container {
-  max-width: 37.5rem;
+  max-width: 40rem;
   margin: 0 auto;
   padding: 1.25rem;
 }
 
-.links-container {
-  display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
-}
-
-.platform-link-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 0.5rem;
-}
 
 .save-cancel-btn-container{
-  margin-top:var(--mt);
+  margin-top:var(--m12);
   display: flex;
   gap:2rem;
 }
 
+.platform-dropdown{
+  width: 57%;  
+  cursor: pointer;
+}
+
+ select{
+  color: var(--clr-light);
+  appearance: none;
+}
+
+option{
+  color: var(--clr-primary);
+  font-weight: bold;
+}
+
+
+
+/* Rendered Platform-Links */
 .link-list-item-container{
   display: flex;
   justify-content: space-between;
-  border: 2px solid;
+  align-items: center;
+  margin-top:var(--m12);
+  padding:var(--p12) ;
+  border-radius: var(--br);
+  
 }
-.edit-delete-btn-container{
-  display: flex;
-  flex-direction: column;
-  gap:0.6rem;
-}
+

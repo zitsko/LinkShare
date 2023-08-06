@@ -13,14 +13,15 @@ function LinkForm({
 }) {
   return (
     <form>
-      <div className="platform-link-container">
-        <div >
+      <div className="platform-link-container flex-col">
+      <div >
           <label htmlFor="platform"></label>
           <select
            id="platform"
            name="platform"
            value={platform}
            onChange={handlePlatformChange}
+           className="platform-dropdown"
           >
             <option value="">Select a platform</option>
             <option value="github">GitHub</option>
@@ -29,6 +30,7 @@ function LinkForm({
             {/* Add more options for other platforms */}
           </select>
         </div>
+
         {/* New input for custom platform */}
         {platform === "other" && (
           <div>
