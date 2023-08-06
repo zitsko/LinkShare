@@ -104,7 +104,7 @@ function Preview() {
             {" "}
             {profileDetails.firstName} {profileDetails.lastName}
           </h2>
-          <p> {profileDetails.profileEmail}</p>
+          <p className="text"> {profileDetails.profileEmail}</p>
         </div>
       </div>
 
@@ -112,12 +112,12 @@ function Preview() {
       {links.length > 0 ? (
         <ul className="clickable-links-container flex-col">
           {links.map((link) => (
-            <li key={link._id}>
+            <li key={link._id} className="link-box">
               <a
                 href={link.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text"
+                className="preview-link-text"
               >
                 {link.customPlatform || link.platform}
               </a>

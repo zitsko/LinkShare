@@ -7,15 +7,37 @@
   .profile-in-preview-container{
     justify-content: center;
     align-items: center;
-    border: solid;
 }
 
 .clickable-links-container{
   align-items: center;
   padding-right: 5rem;
-  border: solid red;
 }
 
+.link-box{
+  padding: 1.5rem 2.5rem;
+  border-radius: var(--br);
+  background-color: var(--clr-primary);
+  margin-top: var(--m12);
+  width: 70%;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.8s;
+}
+
+.link-box:hover{
+  transform: scale3d(1.1,1.1,1.1); 
+}
+
+.preview-link-text{
+  color: var(--clr-white);
+  text-decoration: none;
+  font-weight:bold;
+  font-size: 1.4rem;
+  letter-spacing: 0.3rem;
+  text-transform: capitalize;
+  text-shadow: 3px 3px 15px rgba(220, 53, 69, 0.7);
+}
 
 
 /* Modal */
