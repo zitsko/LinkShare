@@ -5,9 +5,9 @@ function LinkListItem({ link, handleEditLink, handleDeleteLink }) {
   return (
     <div className="link-list-item-container items-background">
 
-      <div className="platforms-link-container flex-col">
+      <div className="platforms-link-container flex-col text">
         <p>Platform: {link.customPlatform || link.platform}</p>
-        <p>URL: {link.url}</p>
+        <p>Link: {link.url}</p>
       </div>
       
       

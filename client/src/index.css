@@ -12,7 +12,7 @@ code {
 :root {
   font-family: 'Inter', sans-serif;
   font-size: 16px;
-  --fs-text: 0.8125rem;
+  --fs-text: 1.1rem;
   --clr-white: #fff;
   --clr-intense: #dc3545;
   --clr-light:#6c757d;
@@ -67,17 +67,11 @@ code {
   font-weight: bold;
 }
 /* Typography */
-.size-text{
+.text{
   font-size: var(--fs-text);
+  line-height: 1.3;
+  letter-spacing: 0.8px;
 }
-/* inputs and dropdown for links profile and preview */
-input,.platform-dropdown{
-  padding: 0.7rem 1.2rem;
-  border-radius: var(--br);
-  border: 2px solid var(--clr-light);
-  width: 50%;
-}
-
 
 /* Backgrounds */
 .items-background{
@@ -90,11 +84,15 @@ input,.platform-dropdown{
   flex-direction: column;
   gap: 0.6rem;
 }
-
+/* Other */
 ul{
   list-style-type: none;
 }
 ::placeholder{
   color: var(--clr-light);
   font-size: 1rem;
+}
+
+.text-shadow{
+  text-shadow: 2px 2px 3px rgba(99, 60, 255, 0.3);
 }

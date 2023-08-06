@@ -8,11 +8,11 @@ function PreviewNavbar({ handleShareLinks, showConfirmationModal }) {
     <nav>
       <ul className="preview-navbar-container">
         <li>
-          <button onClick={() => navigate("/links")}>Links</button>
+          <button onClick={() => navigate("/links")} className='btn light-btn'>Links</button>
         </li>      
 
         <li>
-          <button onClick={() => navigate('/profile')}>Profile</button>
+          <button onClick={() => navigate('/profile')}className='btn light-btn'>Profile</button>
         </li>
 
         <li>
@@ -21,7 +21,8 @@ function PreviewNavbar({ handleShareLinks, showConfirmationModal }) {
               handleShareLinks();
               showConfirmationModal();
             }}
-          >
+            className='btn primary-btn'
+            >
             Share Links
           </button>{" "}
         </li>

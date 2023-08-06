@@ -182,16 +182,20 @@ function Links() {
       
         {!isLoading && (
           <div className="links-container flex-col">
-       
-        <h1>Customize Your Links in LinkShare!</h1>
-       
-        <p>
-          Easily add, edit, or remove links below to create your personalized
-          profile. Share your favorite platforms, websites, and portfolios with
-          the world in one convenient place. Show off your digital presence with
-          style!
-        </p>
-        
+
+       {/* extra div for group h1 with p to narrow the margin*/}
+        <div >
+          <h1 className="text-shadow">Customize Your Links in LinkShare!</h1>
+          <div className="text">
+            <p>
+              Easily add, edit, or remove links below to create your personalized
+              profile. Share your favorite platforms, websites, and portfolios with
+              the world in one convenient place. Show off your digital presence with
+              style!
+            </p>
+          </div>
+        </div>
+
         <button onClick={handleAddLink} className="btn big-btn no-background-btn">+Add a new link</button>
 
         {/* Render LinkForm if showLinkForm is true */}
@@ -218,18 +222,11 @@ function Links() {
       {links.length > 0 && (
         <button onClick={handleDeleteAllLinks} className="btn no-background-intense-btn ">Delete All Links</button>
       )}
-       <button
-          className="btn intense-btn "
-          onClick={() => {
-            logout();
-          }}
-        >
-          Logout
-        </button>
+      
 
         {/* Initial content before adding links */}
         {showStartInfo && (
-          <div className="start-info-section"
+          <div className="start-info-section text"
           style={{ display: showLinkForm ? "none" : "block" }}>
             
             <h2>Let's get started!</h2>
@@ -240,8 +237,18 @@ function Links() {
             </p>
           </div>
         )}
+        <button
+          className="btn intense-btn "
+          onClick={() => {
+            logout();
+          }}
+        >
+          Logout
+        </button>
       </div>
+      
  )}
+     
     </div>
   );
 }

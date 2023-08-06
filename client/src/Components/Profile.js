@@ -145,8 +145,8 @@ function Profile() {
     <div className="profile-container">
       <MainNavbar />
 
-      <div className="profile-details-container">
-        <h1>Profile Details</h1>
+      <div className="profile-details-container flex-col">
+        <h1 className="text-shadow">Profile Details</h1>
         {imageUrl && <img src={imageUrl} alt="" className="profile-image" />}
 
         {/* Render ProfileForm to allow the user to edit and save the profile data */}

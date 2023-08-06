@@ -42,6 +42,7 @@ function LinkForm({
               placeholder="Enter your custom platform here"
               value={customPlatform}
               onChange={handleCustomPlatformChange}
+              className="links-inputs"
             />
           </div>
         )}
@@ -55,6 +56,7 @@ function LinkForm({
             placeholder="Enter your link here"
             value={linkUrl}
             onChange={handleLinkURLChange}
+            className="links-inputs"
           />
         </div>
       </div>

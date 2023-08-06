@@ -14,7 +14,6 @@ function Preview() {
     email: "",
   });
 
- 
   useEffect(() => {
     if (localStorage.getItem("token")) {
       axios
@@ -39,8 +38,6 @@ function Preview() {
     }
   }, []);
 
-
-
   const fetchProfileDetails = async (userId) => {
     try {
       const response = await axios.get(
@@ -48,7 +45,6 @@ function Preview() {
       );
       console.log("Response data:", response.data);
       setProfileDetails(response.data[0]); // Assuming the API returns an array of profiles we take the first one
-      
     } catch (error) {
       console.error("Error fetching profile details:", error);
     }
@@ -66,10 +62,7 @@ function Preview() {
   // Function to copy profile details and links to clipboard
   const handleCopyLinks = () => {
     const formattedLinks = links
-      .map(
-        (link) =>
-          `${link.customPlatform || link.platform}\n${link.url}`
-      )
+      .map((link) => `${link.customPlatform || link.platform}\n${link.url}`)
       .join("\n\n");
 
     const formattedProfileDetails = `
@@ -77,60 +70,74 @@ function Preview() {
           ${profileDetails.profileEmail}
         `;
 
-    const contentToCopy =
-      formattedProfileDetails + "\n" + formattedLinks;
+    const contentToCopy = formattedProfileDetails + "\n" + formattedLinks;
 
     // Copy the content to clipboard
     navigator.clipboard.writeText(contentToCopy);
   };
 
- 
   // Function to show the modal when "Share Links" button is clicked
   const handleShareLinks = () => {
     handleCopyLinks(); // Call the existing function to copy links and profile details
-    };
+  };
 
-    const showConfirmationModal = () => {
-        setShowProfileSavedModal(true);
-        setTimeout(() => {
-          setShowProfileSavedModal(false);
-        }, 3000); // Change 3000 to the desired duration in milliseconds (e.g., 3000 for 3 seconds)
-      };
-      
-  
+  const showConfirmationModal = () => {
+    setShowProfileSavedModal(true);
+    setTimeout(() => {
+      setShowProfileSavedModal(false);
+    }, 3000); // Change 3000 to the desired duration in milliseconds (e.g., 3000 for 3 seconds)
+  };
+
   return (
-    
-    <div className="preview-container">     
-      <PreviewNavbar handleShareLinks={handleShareLinks} showConfirmationModal={showConfirmationModal} />
-<div className="profile-links-container">  
-    <h1>Profile Preview</h1>
-    {/* {uploadedImg && <ImagePreview uploadedImg={uploadedImg} />} */}
-    <img src={profileDetails.imageURL} alt="" className="profile-image" />
-    <p> {profileDetails.firstName} {profileDetails.lastName}</p>
-    <p> {profileDetails.profileEmail}</p>
-    {links.length > 0 ? (
-      <ul>
-        {links.map((link) => (
-          <li key={link._id}>
-            <p>{link.customPlatform || link.platform}</p>{" "}
-            <p>{link.url}</p>
-          </li>
-        ))}
-      </ul>
-    ) : (
-      <p>No links found.</p>
-    )}
-</div>
+    <div className="preview-container">
+      <PreviewNavbar
+        handleShareLinks={handleShareLinks}
+        showConfirmationModal={showConfirmationModal}
+      />
+      <div className="profile-in-preview-container flex-col">
+        <h1 className="text-shadow">Profile Preview</h1>
+        <img src={profileDetails.imageURL} alt="" className="profile-image" />
+
+        {/* FullName-Email */}
+        <div>
+          <h2>
+            {" "}
+            {profileDetails.firstName} {profileDetails.lastName}
+          </h2>
+          <p> {profileDetails.profileEmail}</p>
+        </div>
+      </div>
+
+      {/* Links */}
+      {links.length > 0 ? (
+        <ul className="clickable-links-container flex-col">
+          {links.map((link) => (
+            <li key={link._id}>
+              <a
+                href={link.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text"
+              >
+                {link.customPlatform || link.platform}
+              </a>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p>No links found.</p>
+      )}
 
       {showProfileSavedModal && (
-  <div className="share-links-modal">
-    <div className="share-links-modal-content">
-      <h2>Links Shared!</h2>
-      <p>Your profile details and links have been copied to the clipboard.</p>
-    </div>
-  </div>
-)}
-
+        <div className="share-links-modal">
+          <div className="share-links-modal-content">
+            <h2>Links Shared!</h2>
+            <p>
+              Your profile details and links have been copied to the clipboard.
+            </p>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

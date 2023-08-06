@@ -1,14 +1,24 @@
 .preview-container {
-    max-width: 37.5rem;
+    max-width: 40rem;
     margin: 0 auto;
     padding: 1.25rem;
   }
-  .profile-links-container{
-    display: flex;
-    flex-direction: column;
+
+  .profile-in-preview-container{
     justify-content: center;
     align-items: center;
+    border: solid;
 }
+
+.clickable-links-container{
+  align-items: center;
+  padding-right: 5rem;
+  border: solid red;
+}
+
+
+
+/* Modal */
   .share-links-modal {
     position: fixed;
     top: 50%;

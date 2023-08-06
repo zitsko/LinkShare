@@ -1,15 +1,14 @@
 .profile-container {
-    max-width: 37.5rem;
+    max-width: 40rem;
     margin: 0 auto;
     padding: 1.25rem;
  }
 
-.profile-details-container{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+ .profile-details-container{
+  justify-content: center;
+  align-items: center;
 }
+
 .profile-image {
   width: 200px;
   height: 200px;
@@ -17,6 +16,18 @@
   border-radius: 50%;
   object-fit: cover; 
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/*----- ProfileForm -------*/
+.profile-form-container{
+  justify-content: center; 
+}
+
+.profile-inputs{
+  padding: 0.7rem 1.2rem;
+  border-radius: var(--br);
+  border: 2px solid var(--clr-light);
+  width: 84%;
 }
 
   .modal {

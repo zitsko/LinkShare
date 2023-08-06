@@ -4,19 +4,20 @@
   padding: 1.25rem;
 }
 
-
-.save-cancel-btn-container{
-  margin-top:var(--m12);
-  display: flex;
-  gap:2rem;
+/* LinkForm */
+.links-inputs,
+.platform-dropdown{
+  padding: 0.7rem 1.2rem;
+  border-radius: var(--br);
+  border: 2px solid var(--clr-light);
+  width: 50%;
 }
-
 .platform-dropdown{
   width: 57%;  
   cursor: pointer;
 }
 
- select{
+select{
   color: var(--clr-light);
   appearance: none;
 }
@@ -25,8 +26,11 @@ option{
   color: var(--clr-primary);
   font-weight: bold;
 }
-
-
+.save-cancel-btn-container{
+  margin-top:var(--m12);
+  display: flex;
+  gap:2rem;
+}
 
 /* Rendered Platform-Links */
 .link-list-item-container{
@@ -36,6 +40,10 @@ option{
   margin-top:var(--m12);
   padding:var(--p12) ;
   border-radius: var(--br);
-  
-}
+  }
 
+  .platforms-link-container p{
+    text-shadow: 1px 1px 3px rgba(99, 60, 255, 0.2);
+    }
+
+   

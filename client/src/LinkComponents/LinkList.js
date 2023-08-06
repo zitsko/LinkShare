@@ -3,7 +3,7 @@ import LinkListItem from "./LinkListItem";
 
 function LinkList({ links, handleEditLink, handleDeleteLink }) {
   return (
-    <div>
+    <div >
       {links.map((link) => (
         <LinkListItem
           key={link._id}
