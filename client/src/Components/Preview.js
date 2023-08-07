@@ -9,6 +9,7 @@ function Preview() {
   const [profileDetails, setProfileDetails] = useState({});
   const [showProfileSavedModal, setShowProfileSavedModal] = useState(false);
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(true);
   const [user, setUser] = useState({
     _id: "",
     email: "",
@@ -45,6 +46,7 @@ function Preview() {
       );
       console.log("Response data:", response.data);
       setProfileDetails(response.data[0]); // Assuming the API returns an array of profiles we take the first one
+      setIsLoading(false);
     } catch (error) {
       console.error("Error fetching profile details:", error);
     }
@@ -54,6 +56,7 @@ function Preview() {
     try {
       const response = await axios.get(`http://localhost:3636/links/${userId}`);
       setLinks(response.data);
+      setIsLoading(false);
     } catch (error) {
       console.error("Error fetching links:", error);
     }
@@ -94,38 +97,46 @@ function Preview() {
         handleShareLinks={handleShareLinks}
         showConfirmationModal={showConfirmationModal}
       />
-      <div className="profile-in-preview-container flex-col">
-        <h1 className="text-shadow">Profile Preview</h1>
-        <img src={profileDetails.imageURL} alt="" className="profile-image" />
+      {!isLoading && (
+        <>
+          <div className="profile-in-preview-container flex-col">
+            <h1 className="text-shadow">Profile Preview</h1>
+            <img
+              src={profileDetails.imageURL}
+              alt=""
+              className="profile-image"
+            />
 
-        {/* FullName-Email */}
-        <div>
-          <h2 className="full-name">
-            {" "}
-            {profileDetails.firstName} {profileDetails.lastName}
-          </h2>
-          <p className="text"> {profileDetails.profileEmail}</p>
-        </div>
-      </div>
+            {/* FullName-Email */}
+            <div>
+              <h2 className="full-name">
+                {" "}
+                {profileDetails.firstName} {profileDetails.lastName}
+              </h2>
+              <p className="text"> {profileDetails.profileEmail}</p>
+            </div>
+          </div>
 
-      {/* Links */}
-      {links.length > 0 ? (
-        <ul className="clickable-links-container flex-col">
-          {links.map((link) => (
-            <li key={link._id} className="link-box">
-              <a
-                href={link.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="preview-link-text"
-              >
-                {link.customPlatform || link.platform}
-              </a>
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <p>No links found.</p>
+          {/* Links */}
+          {links.length > 0 ? (
+            <ul className="clickable-links-container flex-col">
+              {links.map((link) => (
+                <li key={link._id} className="link-box">
+                  <a
+                    href={link.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="preview-link-text"
+                  >
+                    {link.customPlatform || link.platform}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p>No links found.</p>
+          )}
+        </>
       )}
 
       {showProfileSavedModal && (
