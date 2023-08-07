@@ -9,15 +9,6 @@
   align-items: center;
 }
 
-.profile-image {
-  width: 200px;
-  height: 200px;
-  border: 3px solid #ccc;
-  border-radius: 50%;
-  object-fit: cover; 
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
 /*----- ProfileForm -------*/
 .profile-form-container{
   justify-content: center; 

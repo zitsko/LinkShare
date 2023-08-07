@@ -100,7 +100,7 @@ function Preview() {
 
         {/* FullName-Email */}
         <div>
-          <h2>
+          <h2 className="full-name">
             {" "}
             {profileDetails.firstName} {profileDetails.lastName}
           </h2>

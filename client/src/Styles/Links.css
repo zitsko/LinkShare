@@ -40,6 +40,8 @@ option{
   margin-top:var(--m12);
   padding:var(--p12) ;
   border-radius: var(--br);
+  border: 2px solid var(--clr-light);
+
   }
 
   .platforms-link-container p{
