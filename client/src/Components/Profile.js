@@ -10,7 +10,7 @@ function Profile() {
   const [lastName, setLastName] = useState("");
   const [file, setFile] = useState("");
   const [imageUrl, setImageUrl] = useState("");
-  const [uploadedImg, setUploadedImg] = useState("");
+  // const [uploadedImg, setUploadedImg] = useState("");
   const [profileEmail, setProfileEmail] = useState("");
   const [profileDetails, setProfileDetails] = useState({});
   const [user, setUser] = useState({
@@ -71,7 +71,7 @@ function Profile() {
     setShowModal(true);
     setTimeout(() => {
       setShowModal(false);
-    }, 3000); // Change 3000 to the desired duration in milliseconds (e.g., 3000 for 3 seconds)
+    }, 3000); 
   };
 
   const previewFiles = (file) => {
@@ -79,7 +79,7 @@ function Profile() {
     reader.readAsDataURL(file);
     reader.onloadend = () => {
       setImageUrl(reader.result);
-    };
+    };   
   };
 
   const handleProfileImageChange = (e) => {
@@ -103,10 +103,9 @@ function Profile() {
       const imageURL = imageResponse.data.secure_url;
       console.log("imageUrl:",imageURL);
 
-      //extract public_id of uploaded image
-      const uploadedImg = imageResponse.data.public_id;
-      console.log("uploadedImg:", uploadedImg);
-      setUploadedImg(uploadedImg);
+      // const uploadedImg = imageResponse.data.public_id;
+      // console.log("uploadedImg:", uploadedImg);
+      // setUploadedImg(uploadedImg);
 
       // Create or update the user profile with the profile details and the Cloudinary URL
       const profileData = {

@@ -26,7 +26,6 @@ function ProfileForm({
         />
         {imageUrl && <img src={imageUrl} alt="Profile" />}
       </div>
-
       
         <div>
           <label htmlFor="firstName"></label>

@@ -5,6 +5,7 @@ function LinkForm({
   platform,
   customPlatform,
   linkUrl,
+  selectedLink,
   handlePlatformChange,
   handleCustomPlatformChange,
   handleLinkURLChange,
@@ -21,7 +22,8 @@ function LinkForm({
            name="platform"
            value={platform}
            onChange={handlePlatformChange}
-           className="platform-dropdown"
+           className={selectedLink.platform ? "platform-dropdown editable" : "platform-dropdown"}
+           
           >
             <option value="">Select a platform</option>
             <option value="github">GitHub</option>

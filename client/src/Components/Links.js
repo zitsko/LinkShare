@@ -72,6 +72,7 @@ function Links() {
     setPlatform("");
     setCustomPlatform("");
     setLinkUrl("");
+    setSelectedLink({});
   };
 
   const handlePlatformChange = (e) => {
@@ -88,10 +89,12 @@ function Links() {
 
   const handleEditLink = (link) => {
     setSelectedLink(link);
+    console.log("Editing link:", link);
     // Set platform and customPlatform state with values from the selected link
     setPlatform(link.platform);
     setCustomPlatform("");
     setLinkUrl(link.url);
+    setShowLinkForm(true);
   };
 
   const handleSubmit = async (e) => {
@@ -205,6 +208,7 @@ function Links() {
             platform={platform}
             customPlatform={customPlatform}
             linkUrl={linkUrl}
+            selectedLink={selectedLink}
             handlePlatformChange={handlePlatformChange}
             handleCustomPlatformChange={handleCustomPlatformChange}
             handleLinkURLChange={handleLinkURLChange}

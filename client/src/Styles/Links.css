@@ -15,6 +15,12 @@
 .platform-dropdown{
   width: 57%;  
   cursor: pointer;
+  font-size: 1rem;
+}
+
+.editable {
+  border-color: var(--clr-light); 
+  background-color:#f0faff;
 }
 
 select{
