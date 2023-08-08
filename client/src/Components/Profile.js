@@ -10,7 +10,6 @@ function Profile() {
   const [file, setFile] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [userImg, setuserImg] = useState("");
-  // const [uploadedImg, setUploadedImg] = useState("");
   const [profileEmail, setProfileEmail] = useState("");
   const [profileDetails, setProfileDetails] = useState({});
   const [isLoading, setIsLoading] = useState(true);
@@ -57,7 +56,7 @@ function Profile() {
         // If response data object is not empty, it means the user has an existing profile.
         // Set the state variables with the fetched profile data.
         const profileData = response.data[0];
-        setImageUrl(profileData.imageURL);
+        setImageUrl(profileData.imageURL);//to keep the image after refresh
         setuserImg(profileData.imageURL)
         setName(profileData.firstName);
         setLastName(profileData.lastName);
