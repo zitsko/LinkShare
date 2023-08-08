@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import PreviewNavbar from "../Navbars/PreviewNavbar";
 import axios from "axios";
-// import ImagePreview from "./ImagePreview";
 
 function Preview() {
   const [links, setLinks] = useState([]);
@@ -44,7 +43,7 @@ function Preview() {
       const response = await axios.get(
         `http://localhost:3636/profile/${userId}`
       );
-      console.log("Response data:", response.data);
+      console.log("Response data:", response.data[0]);
       setProfileDetails(response.data[0]); // Assuming the API returns an array of profiles we take the first one
       setIsLoading(false);
     } catch (error) {
@@ -101,6 +100,7 @@ function Preview() {
         <>
           <div className="profile-in-preview-container flex-col">
             <h1 className="text-shadow">Profile Preview</h1>
+
             <img
               src={profileDetails.imageURL}
               alt=""

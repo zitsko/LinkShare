@@ -4,12 +4,12 @@ import MainNavbar from "../Navbars/MainNavbar";
 import axios from "axios";
 import ProfileForm from "../ProfileComponents/ProfileForm";
 
-
 function Profile() {
   const [firstName, setName] = useState("");
   const [lastName, setLastName] = useState("");
   const [file, setFile] = useState("");
   const [imageUrl, setImageUrl] = useState("");
+  const [userImg, setuserImg] = useState("");
   // const [uploadedImg, setUploadedImg] = useState("");
   const [profileEmail, setProfileEmail] = useState("");
   const [profileDetails, setProfileDetails] = useState({});
@@ -58,6 +58,7 @@ function Profile() {
         // Set the state variables with the fetched profile data.
         const profileData = response.data[0];
         setImageUrl(profileData.imageURL);
+        setuserImg(profileData.imageURL)
         setName(profileData.firstName);
         setLastName(profileData.lastName);
         setProfileEmail(profileData.profileEmail);
@@ -68,56 +69,63 @@ function Profile() {
     }
   };
 
-  // show the modal for a few seconds
-  const showConfirmationModal = () => {
-    setShowModal(true);
-    setTimeout(() => {
-      setShowModal(false);
-    }, 3000); 
-  };
+  // const previewFiles = (file) => {
+  //   const reader = new FileReader();
+  //   reader.readAsDataURL(file);
+  //   reader.onloadend = () => {
+  //     setImageUrl(reader.result);
+  //   };   
+    
+  // };
 
   const previewFiles = (file) => {
     const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onloadend = () => {
-      setImageUrl(reader.result);
-    };   
+    if (file) {
+      reader.readAsDataURL(file);
+      reader.onloadend = () => {
+        setImageUrl(reader.result);
+      };
+    } else {
+      setImageUrl("");
+    }
   };
+
 
   const handleProfileImageChange = (e) => {
     const file = e.target.files[0];
+    console.log(file)
     setFile(file);
     previewFiles(file);
   };
+
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     try {
-      const formData = new FormData();
-      formData.append("file", file);
-      formData.append("upload_preset", "unsigned");
-      const imageResponse = await axios.post(
-        "https://api.cloudinary.com/v1_1/dxhce0ar1/image/upload",
-        formData
-      );
-      // Extract the Cloudinary URL for the uploaded image
-      const imageURL = imageResponse.data.secure_url;
-      console.log("imageUrl:",imageURL);
-
-      // const uploadedImg = imageResponse.data.public_id;
-      // console.log("uploadedImg:", uploadedImg);
-      // setUploadedImg(uploadedImg);
-
-      // Create or update the user profile with the profile details and the Cloudinary URL
       const profileData = {
         firstName: firstName,
         lastName: lastName,
-        profileImage: imageUrl,
         profileEmail: profileEmail,
+        profileImage : userImg,
         userId: user._id,
       };
+      if(file){
+        const formData = new FormData();
+        formData.append("file", file);
+        formData.append("upload_preset", "unsigned");
+        const imageResponse = await axios.post(
+          "https://api.cloudinary.com/v1_1/dxhce0ar1/image/upload",
+          formData
+        );
+        const imageURL = imageResponse.data.secure_url;
+        console.log("imageUrl:",imageURL);
+        profileData.profileImage = imageURL
+      } 
+    
 
+      // Create or update the user profile with the profile details and the Cloudinary URL
+     
       // Now, perform a separate API call to the backend to handle the profile details
       if (profileDetails.length > 0) {
         // User already has a profile, update it
@@ -141,6 +149,14 @@ function Profile() {
       );
     }
   };
+
+    // show the modal 
+    const showConfirmationModal = () => {
+      setShowModal(true);
+      setTimeout(() => {
+        setShowModal(false);
+      }, 3000); 
+    };
  
   return (
     <div className="profile-container">
