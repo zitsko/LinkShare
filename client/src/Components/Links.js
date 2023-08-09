@@ -188,7 +188,7 @@ function Links() {
 
        {/* extra div for group h1 with p to narrow the margin*/}
         <div >
-          <h1 className="text-shadow">Customize Your Links in LinkShare!</h1>
+          <h1 className="heading text-shadow">Customize Your Links in LinkShare!</h1>
           <div className="text">
             <p>
               Easily add, edit, or remove links below to create your personalized

@@ -13,6 +13,7 @@ code {
   font-family: 'Inter', sans-serif;
   font-size: 16px;
   --fs-text: 1.1rem;
+  --clr-dark: #1a1a1a;
   --clr-white: #fff;
   --clr-intense: #dc3545;
   --clr-light:#6c757d;
@@ -72,6 +73,11 @@ code {
   font-size: var(--fs-text);
   line-height: 1.3;
   letter-spacing: 0.8px;
+  color: var(--clr-dark);
+}
+.heading{
+  color: var(--clr-dark);
+  letter-spacing: 1px;
 }
 
 /* Backgrounds */
@@ -85,6 +91,7 @@ code {
   flex-direction: column;
   gap: 0.6rem;
 }
+
 /* Other */
 ul{
   list-style-type: none;

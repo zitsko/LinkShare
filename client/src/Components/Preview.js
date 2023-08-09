@@ -99,7 +99,7 @@ function Preview() {
       {!isLoading && (
         <>
           <div className="profile-in-preview-container flex-col">
-            <h1 className="text-shadow">Profile Preview</h1>
+            <h1 className="heading text-shadow">Profile Preview</h1>
 
             <img
               src={profileDetails.imageURL}
