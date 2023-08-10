@@ -5,7 +5,7 @@ import { faLink } from "@fortawesome/free-solid-svg-icons";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { faShare } from "@fortawesome/free-solid-svg-icons";
 
-function PreviewNavbar({ handleShareLinks, showConfirmationModal }) {
+function PreviewNavbar({ handleShareProfile, showConfirmationModal }) {
   const navigate = useNavigate();
 
   return (
@@ -29,7 +29,7 @@ function PreviewNavbar({ handleShareLinks, showConfirmationModal }) {
         <li>
           <button
             onClick={() => {
-              handleShareLinks();
+              handleShareProfile();
               showConfirmationModal();
             }}
             className='btn primary-btn animated'

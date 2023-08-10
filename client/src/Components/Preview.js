@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import PreviewNavbar from "../Navbars/PreviewNavbar";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
 function Preview() {
   const [links, setLinks] = useState([]);
@@ -63,39 +63,24 @@ function Preview() {
     }
   };
 
-  // Function to copy profile details and links to clipboard
-  const handleCopyLinks = () => {
-    const formattedLinks = links
-      .map((link) => `${link.customPlatform || link.platform}\n${link.url}`)
-      .join("\n\n");
-
-    const formattedProfileDetails = `
-          ${profileDetails.firstName} ${profileDetails.lastName}
-          ${profileDetails.profileEmail}
-        `;
-
-    const contentToCopy = formattedProfileDetails + "\n" + formattedLinks;
-
-    // Copy the content to clipboard
-    navigator.clipboard.writeText(contentToCopy);
-  };
-
   // Function to show the modal when "Share Links" button is clicked
-  const handleShareLinks = () => {
-    handleCopyLinks(); // Call the existing function to copy links and profile details
+  const handleShareProfile = () => {
+    const currentURL = window.location.href;
+    navigator.clipboard.writeText(currentURL);
+    showConfirmationModal();
   };
 
   const showConfirmationModal = () => {
     setShowProfileSavedModal(true);
     setTimeout(() => {
       setShowProfileSavedModal(false);
-    }, 3000); // Change 3000 to the desired duration in milliseconds (e.g., 3000 for 3 seconds)
+    }, 3000);
   };
 
   return (
     <div className="preview-container">
       <PreviewNavbar
-        handleShareLinks={handleShareLinks}
+        handleShareProfile={handleShareProfile}
         showConfirmationModal={showConfirmationModal}
       />
       {!isLoading && (
@@ -124,7 +109,7 @@ function Preview() {
             <ul className="clickable-links-container flex-col">
               {links.map((link) => (
                 <li key={link._id} className="link-box">
-                  <div className="x">
+                  <div className="link-box-content">
                     <a
                       href={link.url}
                       target="_blank"
@@ -132,9 +117,12 @@ function Preview() {
                       className="preview-link-text"
                     >
                       {link.customPlatform || link.platform}
-                    
                     </a>
-                    <FontAwesomeIcon icon={faArrowRight} className="faArrowRight" size="xl" />
+                    <FontAwesomeIcon
+                      icon={faArrowRight}
+                      className="faArrowRight animated"
+                      size="xl"
+                    />
                   </div>
                 </li>
               ))}

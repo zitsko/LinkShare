@@ -24,7 +24,7 @@
   border-radius: var(--br);
   background-color: var(--clr-primary);
   margin-top: var(--m12);
-  width: 70%;
+  width: 60%;
   text-align: center;
   cursor: pointer;
   transition: transform 1.5s;
@@ -45,7 +45,7 @@
 
 }
 
-.x{
+.link-box-content{
 display: flex;
 justify-content: space-between;
 }

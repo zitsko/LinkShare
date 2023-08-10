@@ -29,7 +29,6 @@ function LinkForm({
             <option value="github">GitHub</option>
             <option value="linkedin">LinkedIn</option>
             <option value="other">Other</option>
-            {/* Add more options for other platforms */}
           </select>
         </div>
 
