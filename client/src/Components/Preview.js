@@ -109,21 +109,21 @@ function Preview() {
             <ul className="clickable-links-container flex-col">
               {links.map((link) => (
                 <li key={link._id} className="link-box">
-                  <div className="link-box-content">
                     <a
                       href={link.url}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="preview-link-text"
                     >
+                  <div className="link-box-content">
                       {link.customPlatform || link.platform}
-                    </a>
                     <FontAwesomeIcon
                       icon={faArrowRight}
-                      className="faArrowRight animated"
+                      className="animated"
                       size="xl"
-                    />
+                      />
                   </div>
+                      </a>
                 </li>
               ))}
             </ul>

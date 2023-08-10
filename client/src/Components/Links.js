@@ -9,7 +9,6 @@ import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { faPowerOff } from "@fortawesome/free-solid-svg-icons";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 
-
 function Links() {
   //-------- State Variables-----------
   const [platform, setPlatform] = useState(""); // State for the platform input
@@ -20,6 +19,8 @@ function Links() {
   const [showLinkForm, setShowLinkForm] = useState(false); //manage the visibility of LinkForm
   const [showStartInfo, setShowStartInfo] = useState(true); //manage the visibility of start info section
   const [isLoading, setIsLoading] = useState(true); //manage flickering issues when fetch
+  const [isUrlValid, setIsUrlValid] = useState(true);
+  const [showWarning, setShowWarning] = useState(false);
   const navigate = useNavigate();
   const [user, setUser] = useState({
     _id: "",
@@ -77,6 +78,7 @@ function Links() {
     setCustomPlatform("");
     setLinkUrl("");
     setSelectedLink({});
+    setShowWarning(false)
   };
 
   const handlePlatformChange = (e) => {
@@ -88,12 +90,25 @@ function Links() {
   };
 
   const handleLinkURLChange = (e) => {
-    setLinkUrl(e.target.value); // Update the linkUrl state for the link input
+    const newLinkUrl = e.target.value;
+    setLinkUrl(newLinkUrl); // Update the linkUrl state for the link input
+    setIsUrlValid(isValidURL(newLinkUrl));
+    // Hide the warning message when the user starts typing
+    setShowWarning(false);
+  };
+
+  // Link Validation
+  const isValidURL = (url) => {
+    try {
+      new URL(url);
+      return true;
+    } catch (error) {
+      return false;
+    }
   };
 
   const handleEditLink = (link) => {
     setSelectedLink(link);
-    console.log("Editing link:", link);
     // Set platform and customPlatform state with values from the selected link
     setPlatform(link.platform);
     setCustomPlatform("");
@@ -103,6 +118,11 @@ function Links() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!isUrlValid) {
+      // Show a warning message to the user about the invalid URL
+      setShowWarning(true);
+      return;
+    }
     // Prepare the data to be sent in the POST request
     var linkData = null;
     if (customPlatform) {
@@ -172,6 +192,7 @@ function Links() {
       }
     }
   };
+
   function logout() {
     const shouldLogout = window.confirm(
       "You are about to leave ,are you sure?"
@@ -226,6 +247,13 @@ function Links() {
               handleCancel={handleCancel}
             />
           )}
+
+          {showWarning && (
+            <p className="warning-text">
+              Please enter a valid URL.
+            </p>
+          )}
+
           <LinkList
             links={links}
             handleEditLink={handleEditLink}
@@ -237,8 +265,7 @@ function Links() {
               onClick={handleDeleteAllLinks}
               className="btn no-background-intense-btn "
             >
-              Delete All Links{" "}
-              <FontAwesomeIcon icon={faTrashCan} />
+              Delete All Links <FontAwesomeIcon icon={faTrashCan} />
             </button>
           )}
 

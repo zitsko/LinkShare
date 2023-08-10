@@ -79,6 +79,13 @@ code {
   color: var(--clr-dark);
   letter-spacing: 1px;
 }
+.warning-text{
+  color: var(--clr-intense);
+  font-weight: bold;
+  letter-spacing: 3px;
+  font-size: var(--fs-text);
+  font-style: italic;
+}
 
 /* Backgrounds */
 .items-background{

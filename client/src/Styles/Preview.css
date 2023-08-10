@@ -50,11 +50,6 @@ display: flex;
 justify-content: space-between;
 }
 
-.faArrowRight{
-  color: var(--clr-white);
-}
-
-
 /* Modal */
   .share-links-modal {
     position: fixed;
