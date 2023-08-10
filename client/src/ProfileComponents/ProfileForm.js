@@ -14,19 +14,20 @@ function ProfileForm({
   return (
     <form>
       <div className="flex-col profile-form-container">
+        <div>
+          <label htmlFor="imageURL" className="custom-file-input text animated">
+            Choose a profile image
+          </label>
+          <input
+            type="file"
+            id="imageURL"
+            name="imageURL"
+            onChange={handleProfileImageChange}
+            accept="image/png, image/jpeg, image/jpg, image/jfif"
+          />
+          {imageUrl && <img src={imageUrl} alt="Profile" />}
+        </div>
 
-      <div>
-        <label htmlFor="imageURL"></label>
-        <input
-          type="file"
-          id="imageURL"
-          name="imageURL"
-          onChange={handleProfileImageChange}
-          accept="image/png, image/jpeg, image/jpg, image/jfif"
-        />
-        {imageUrl && <img src={imageUrl} alt="Profile" />}
-      </div>
-      
         <div>
           <label htmlFor="firstName"></label>
           <input
@@ -34,7 +35,7 @@ function ProfileForm({
             id="firstName"
             name="firstName"
             placeholder="First Name"
-            className="profile-inputs"
+            className="profile-inputs text"
             value={firstName}
             onChange={handleFirstNameChange}
           />
@@ -47,7 +48,7 @@ function ProfileForm({
             id="lastName"
             name="lastName"
             placeholder="Last Name"
-            className="profile-inputs"
+            className="profile-inputs text"
             value={lastName}
             onChange={handleLastNameChange}
           />
@@ -60,13 +61,17 @@ function ProfileForm({
             id="profileEmail"
             name="profileEmail"
             placeholder="Email"
-            className="profile-inputs"
+            className="profile-inputs text"
             value={profileEmail}
             onChange={handleProfileEmailChange}
           />
         </div>
 
-        <button type="submit" onClick={handleSubmit} className="btn primary-btn big-btn"> 
+        <button
+          type="submit"
+          onClick={handleSubmit}
+          className="btn primary-btn big-btn"
+        >
           Save
         </button>
       </div>

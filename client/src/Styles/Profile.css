@@ -22,6 +22,28 @@
   width: 84%;
 }
 
+input[type="file"] {
+  display: none;
+}
+/* Style the custom file input button */
+.custom-file-input {
+  display: inline-block;
+  padding: 0.7rem 1.2rem;
+  background-color: var(--clr-background);
+  color: var(--clr-primary);
+  border: none;
+  cursor: pointer;
+  border-radius: var(--br);
+  width: 84%;
+}
+
+.custom-file-input:hover {
+  background-color: var(--clr-primary);
+  color: var(--clr-background);
+}
+
+
+
   .modal {
     position: fixed;
     top: 50%;
