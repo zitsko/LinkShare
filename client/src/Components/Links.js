@@ -4,6 +4,8 @@ import MainNavbar from "../Navbars/MainNavbar";
 import axios from "axios";
 import LinkForm from "../LinkComponents/LinkForm";
 import LinkList from "../LinkComponents/LinkList";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
 function Links() {
   //-------- State Variables-----------
@@ -15,7 +17,6 @@ function Links() {
   const [showLinkForm, setShowLinkForm] = useState(false); //manage the visibility of LinkForm
   const [showStartInfo, setShowStartInfo] = useState(true);//manage the visibility of start info section
   const [isLoading, setIsLoading] = useState(true); //manage flickering issues when fetch
-
   const navigate = useNavigate();
   const [user, setUser] = useState({
     _id: "",
@@ -199,7 +200,10 @@ function Links() {
           </div>
         </div>
 
-        <button onClick={handleAddLink} className="btn big-btn no-background-btn">+Add a new link</button>
+        <button onClick={handleAddLink} className="btn big-btn no-background-btn">
+          Add a new link{" "}
+          <FontAwesomeIcon icon={faPlus} size="lg"/>
+          </button>
 
         {/* Render LinkForm if showLinkForm is true */}
 
