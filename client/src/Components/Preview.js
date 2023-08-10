@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import PreviewNavbar from "../Navbars/PreviewNavbar";
 import axios from "axios";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
 function Preview() {
   const [links, setLinks] = useState([]);
@@ -122,14 +124,18 @@ function Preview() {
             <ul className="clickable-links-container flex-col">
               {links.map((link) => (
                 <li key={link._id} className="link-box">
-                  <a
-                    href={link.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="preview-link-text"
-                  >
-                    {link.customPlatform || link.platform}
-                  </a>
+                  <div className="x">
+                    <a
+                      href={link.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="preview-link-text"
+                    >
+                      {link.customPlatform || link.platform}
+                    
+                    </a>
+                    <FontAwesomeIcon icon={faArrowRight} className="faArrowRight" size="xl" />
+                  </div>
                 </li>
               ))}
             </ul>

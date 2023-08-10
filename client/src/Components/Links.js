@@ -6,6 +6,9 @@ import LinkForm from "../LinkComponents/LinkForm";
 import LinkList from "../LinkComponents/LinkList";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faPowerOff } from "@fortawesome/free-solid-svg-icons";
+import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
+
 
 function Links() {
   //-------- State Variables-----------
@@ -15,7 +18,7 @@ function Links() {
   const [selectedLink, setSelectedLink] = useState({}); // Provide a default value as an empty object
   const [linkUrl, setLinkUrl] = useState(""); // State for the link input
   const [showLinkForm, setShowLinkForm] = useState(false); //manage the visibility of LinkForm
-  const [showStartInfo, setShowStartInfo] = useState(true);//manage the visibility of start info section
+  const [showStartInfo, setShowStartInfo] = useState(true); //manage the visibility of start info section
   const [isLoading, setIsLoading] = useState(true); //manage flickering issues when fetch
   const navigate = useNavigate();
   const [user, setUser] = useState({
@@ -173,90 +176,96 @@ function Links() {
     const shouldLogout = window.confirm(
       "You are about to leave ,are you sure?"
     );
-    if(shouldLogout){
+    if (shouldLogout) {
       localStorage.removeItem("token");
       navigate("/");
-    }   
+    }
   }
 
   return (
-
     <div className="links-navbar-container">
       <MainNavbar />
-      
-        {!isLoading && (
-          <div className="links-container flex-col">
 
-       {/* extra div for group h1 with p to narrow the margin*/}
-        <div >
-          <h1 className="heading text-shadow">Customize Your Links in LinkShare!</h1>
-          <div className="text">
-            <p>
-              Easily add, edit, or remove links below to create your personalized
-              profile. Share your favorite platforms, websites, and portfolios with
-              the world in one convenient place. Show off your digital presence with
-              style!
-            </p>
+      {!isLoading && (
+        <div className="links-container flex-col">
+          {/* extra div for group h1 with p to narrow the margin*/}
+          <div>
+            <h1 className="heading text-shadow">
+              Customize Your Links in LinkShare!
+            </h1>
+            <div className="text">
+              <p>
+                Easily add, edit, or remove links below to create your
+                personalized profile. Share your favorite platforms, websites,
+                and portfolios with the world in one convenient place. Show off
+                your digital presence with style!
+              </p>
+            </div>
           </div>
-        </div>
 
-        <button onClick={handleAddLink} className="btn big-btn no-background-btn">
-          Add a new link{" "}
-          <FontAwesomeIcon icon={faPlus} size="lg"/>
+          <button
+            onClick={handleAddLink}
+            className="btn big-btn no-background-btn animated"
+          >
+            Add a new link <FontAwesomeIcon icon={faPlus} size="lg" />
           </button>
 
-        {/* Render LinkForm if showLinkForm is true */}
+          {/* Render LinkForm if showLinkForm is true */}
 
-        {showLinkForm && (
-          <LinkForm
-            platform={platform}
-            customPlatform={customPlatform}
-            linkUrl={linkUrl}
-            selectedLink={selectedLink}
-            handlePlatformChange={handlePlatformChange}
-            handleCustomPlatformChange={handleCustomPlatformChange}
-            handleLinkURLChange={handleLinkURLChange}
-            handleSubmit={handleSubmit}
-            handleDeleteAllLinks={handleDeleteAllLinks}
-            handleCancel={handleCancel}
+          {showLinkForm && (
+            <LinkForm
+              platform={platform}
+              customPlatform={customPlatform}
+              linkUrl={linkUrl}
+              selectedLink={selectedLink}
+              handlePlatformChange={handlePlatformChange}
+              handleCustomPlatformChange={handleCustomPlatformChange}
+              handleLinkURLChange={handleLinkURLChange}
+              handleSubmit={handleSubmit}
+              handleDeleteAllLinks={handleDeleteAllLinks}
+              handleCancel={handleCancel}
+            />
+          )}
+          <LinkList
+            links={links}
+            handleEditLink={handleEditLink}
+            handleDeleteLink={handleDeleteLink}
           />
-        )}
-        <LinkList
-          links={links}
-          handleEditLink={handleEditLink}
-          handleDeleteLink={handleDeleteLink}
-        />
 
-      {links.length > 0 && (
-        <button onClick={handleDeleteAllLinks} className="btn no-background-intense-btn ">Delete All Links</button>
+          {links.length > 0 && (
+            <button
+              onClick={handleDeleteAllLinks}
+              className="btn no-background-intense-btn "
+            >
+              Delete All Links{" "}
+              <FontAwesomeIcon icon={faTrashCan} />
+            </button>
+          )}
+
+          {/* Initial content before adding links */}
+          {showStartInfo && (
+            <div
+              className="start-info-section text"
+              style={{ display: showLinkForm ? "none" : "block" }}
+            >
+              <h2>Let's get started!</h2>
+              <p>
+                Use the “Add new link” button to get started. Once you have more
+                than one link, you can reorder and edit them. We're here to help
+                you share your profiles with everyone!{" "}
+              </p>
+            </div>
+          )}
+          <button
+            className="btn intense-btn "
+            onClick={() => {
+              logout();
+            }}
+          >
+            Logout <FontAwesomeIcon icon={faPowerOff} />
+          </button>
+        </div>
       )}
-      
-
-        {/* Initial content before adding links */}
-        {showStartInfo && (
-          <div className="start-info-section text"
-          style={{ display: showLinkForm ? "none" : "block" }}>
-            
-            <h2>Let's get started!</h2>
-            <p>
-              Use the “Add new link” button to get started. Once you have more
-              than one link, you can reorder and edit them. We're here to help
-              you share your profiles with everyone!{" "}
-            </p>
-          </div>
-        )}
-        <button
-          className="btn intense-btn "
-          onClick={() => {
-            logout();
-          }}
-        >
-          Logout
-        </button>
-      </div>
-      
- )}
-     
     </div>
   );
 }

@@ -20,7 +20,7 @@
 }
 
 .link-box{
-  padding: 1.5rem 2.5rem;
+   padding: 1.5rem 2.5rem;
   border-radius: var(--br);
   background-color: var(--clr-primary);
   margin-top: var(--m12);
@@ -42,6 +42,16 @@
   letter-spacing: 0.3rem;
   text-transform: capitalize;
   text-shadow: 3px 3px 15px rgba(220, 53, 69, 0.7);
+
+}
+
+.x{
+display: flex;
+justify-content: space-between;
+}
+
+.faArrowRight{
+  color: var(--clr-white);
 }
 
 

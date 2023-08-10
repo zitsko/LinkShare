@@ -16,6 +16,7 @@ function MainNavbar() {
             <FontAwesomeIcon icon={faLink} size="lg" /> Links
           </button>
         </li>
+
         <li>
           <button
             onClick={() => navigate("/profile")}
@@ -24,6 +25,7 @@ function MainNavbar() {
             <FontAwesomeIcon icon={faUser} size="lg" /> Profile
           </button>
         </li>
+        
         <li>
           <button
             onClick={() => navigate("/preview/")}
