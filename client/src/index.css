@@ -30,7 +30,7 @@ code {
   padding: 0.5625rem 0.9375rem;
   border-radius: var(--br);
   color: var(--clr-white);
-  font-size: 1rem;
+  font-size: var(--fs-text);
   cursor: pointer;
   border: none;
 }

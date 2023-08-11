@@ -1,4 +1,6 @@
 import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faImage } from "@fortawesome/free-solid-svg-icons";
 
 function ProfileForm({
   imageUrl,
@@ -15,8 +17,9 @@ function ProfileForm({
     <form>
       <div className="flex-col profile-form-container">
         <div>
-          <label htmlFor="imageURL" className="custom-file-input text animated">
+          <label htmlFor="imageURL" className="custom-file-input  animated">
             Choose a profile image
+          <FontAwesomeIcon icon={faImage} size="xl" />
           </label>
           <input
             type="file"
