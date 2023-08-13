@@ -149,7 +149,7 @@ function Profile() {
     };
  
   return (
-    <div className="profile-container">
+    <div className="app-layout">
       <MainNavbar />
 {!isLoading && (
       <div className="profile-details-container flex-col">

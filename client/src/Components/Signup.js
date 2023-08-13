@@ -22,7 +22,7 @@ function Signup() {
   }
 
   return ( 
-    <div className="signup-login-container">
+    <div className="signup-login-container app-layout">
     <h1 className="app-title">Welcome to LinkShare</h1>
     <div className="input-button-container">
       <input 
@@ -42,7 +42,7 @@ function Signup() {
       }}
       />
       <button
-      className="signup-login-btn"
+      className="btn primary-btn"
        onClick={()=>{
         signup();
       }}>

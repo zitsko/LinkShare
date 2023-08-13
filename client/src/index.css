@@ -42,6 +42,9 @@ code {
 .primary-btn{
   background-color: var(--clr-primary);
 }
+.primary-btn:hover{
+  background-color: #451de6ed;
+}
 
 .no-background-btn,
 .no-background-intense-btn{
@@ -87,12 +90,18 @@ code {
   font-style: italic;
 }
 
-/* Backgrounds */
+/*----- Backgrounds -----*/
 .items-background{
   background-color: var(--clr-background);
 }
 
-/* Layouts */
+/*----- Layouts ------*/
+.app-layout{
+  max-width: 40rem;
+  margin: 0 auto;
+  padding: 1.25rem;
+}
+
 .flex-col{
   display: flex;
   flex-direction: column;

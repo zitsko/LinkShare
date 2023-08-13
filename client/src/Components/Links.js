@@ -204,7 +204,7 @@ function Links() {
   }
 
   return (
-    <div className="links-navbar-container">
+    <div className="app-layout">
       <MainNavbar />
 
       {!isLoading && (

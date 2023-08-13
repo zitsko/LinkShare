@@ -25,8 +25,8 @@ function Login() {
   }
 
   return (
-    <div className="signup-login-container">
-      <h1 className="app-title">Welcome to LinkShare</h1>
+    <div className="signup-login-container app-layout">
+      <h1 className="app-title">Welcome to LinkShare!</h1>
       <div className="input-button-container">
         <input
           type="email"
@@ -45,7 +45,7 @@ function Login() {
           }}
         />
         <button
-          className="signup-login-btn "
+          className="btn primary-btn"
           onClick={() => {
             login();
           }}

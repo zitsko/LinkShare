@@ -78,7 +78,7 @@ function Preview() {
   };
 
   return (
-    <div className="preview-container">
+    <div className="app-layout">
       <PreviewNavbar
         handleShareProfile={handleShareProfile}
         showConfirmationModal={showConfirmationModal}
