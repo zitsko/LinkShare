@@ -6,7 +6,6 @@ import LinkForm from "../LinkComponents/LinkForm";
 import LinkList from "../LinkComponents/LinkList";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
-import { faPowerOff } from "@fortawesome/free-solid-svg-icons";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 
 function Links() {
@@ -193,16 +192,6 @@ function Links() {
     }
   };
 
-  function logout() {
-    const shouldLogout = window.confirm(
-      "You are about to leave ,are you sure?"
-    );
-    if (shouldLogout) {
-      localStorage.removeItem("token");
-      navigate("/");
-    }
-  }
-
   return (
     <div className="app-layout">
       <MainNavbar />
@@ -283,14 +272,7 @@ function Links() {
               </p>
             </div>
           )}
-          <button
-            className="btn intense-btn "
-            onClick={() => {
-              logout();
-            }}
-          >
-            Logout <FontAwesomeIcon icon={faPowerOff} />
-          </button>
+          
         </div>
       )}
     </div>
