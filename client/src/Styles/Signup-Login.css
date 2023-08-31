@@ -1,6 +1,7 @@
 .signup-login-container {
-     margin-top: var(--m12);
+     margin-top: 3rem;
      box-shadow: 0 0 0.625rem rgba(0, 0, 0, 0.2);
+     padding: 5rem 1rem;
   }
 
  .app-title {
@@ -8,6 +9,14 @@
     margin-bottom: var(--m12);
     text-align: center;
     letter-spacing: 3px;
+  }
+
+  .headline-text{
+    text-align: center;
+    line-height: 1.6;
+    letter-spacing: 1.9px;
+    color: var(--clr-primary);
+    font-weight: bold;
   }
 
   .input-button-container{
@@ -24,20 +33,6 @@
   border-radius: 0.625rem;
   box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
   background-color: #ffffff;
-  }
-/* 
-  .signup-login-btn {
-    padding: 0.85rem 2rem;
-    border-radius: 0.3125rem;
-    background-color: #698f7fec;
-    color: #fff;
-    font-size: 1rem;
-    cursor: pointer;
-    border: none;
-  } */
-  
-  .signup-login-btn:hover {
-    background-color: #16622c;
   }
 
   .signup-login-switch-btn{

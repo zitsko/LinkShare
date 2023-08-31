@@ -26,12 +26,18 @@ function Login() {
 
   return (
     <div className="signup-login-container app-layout">
-      <h1 className="app-title">Welcome to LinkShare!</h1>
+      
+        <h1 className="app-title">Welcome to LinkShare</h1>
+        <p className="headline-text">
+          Create your Digital Identity in minutes and <br />Share Your Online Presence
+          with ease!
+        </p>
+
       <div className="input-button-container">
         <input
           type="email"
           placeholder="email"
-          className= "signup-login-inputs"
+          className="signup-login-inputs"
           onChange={(e) => {
             setEmail(e.target.value);
           }}
@@ -39,7 +45,7 @@ function Login() {
         <input
           type="password"
           placeholder="password"
-          className= "signup-login-inputs"
+          className="signup-login-inputs"
           onChange={(e) => {
             setPassword(e.target.value);
           }}
@@ -53,7 +59,7 @@ function Login() {
           Login
         </button>
       </div>
-      <p className="info-text" >
+      <p className="info-text">
         If you do not have an account{" "}
         <button
           className="signup-login-switch-btn "
