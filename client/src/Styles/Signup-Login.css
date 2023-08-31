@@ -17,6 +17,7 @@
     letter-spacing: 1.9px;
     color: var(--clr-primary);
     font-weight: bold;
+    font-size: var(--fs-text);
   }
 
   .input-button-container{
