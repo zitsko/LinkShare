@@ -27,10 +27,10 @@ function Login() {
   return (
     <div className="signup-login-container app-layout">
       
-        <h1 className="app-title text-shadow">Welcome to LinkShare</h1>
+        <h1 className="app-title ">Welcome to LinkShare</h1>
         <p className="headline-text">
           Create your Digital Identity in minutes and <br />Share Your Online Presence
-          with ease!
+          <span> with a single link!</span>
         </p>
 
       <div className="input-button-container">
