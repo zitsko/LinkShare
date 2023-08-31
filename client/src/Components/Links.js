@@ -215,7 +215,7 @@ function Links() {
 
           <button
             onClick={handleAddLink}
-            className="btn big-btn no-background-btn animated"
+            className="btn big-btn no-background-primary-btn animated"
           >
             Add a new link <FontAwesomeIcon icon={faPlus} size="lg" />
           </button>
@@ -272,7 +272,7 @@ function Links() {
               </p>
             </div>
           )}
-          
+
         </div>
       )}
     </div>

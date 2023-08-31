@@ -46,11 +46,16 @@ code {
   background-color: #451de6ed;
 }
 
-.no-background-btn,
+.no-background-primary-btn,
 .no-background-intense-btn{
   background-color: var(--clr-white);
   color:var(--clr-primary);
   border:2px solid var(--clr-primary);
+}
+.no-background-primary-btn:hover{
+  background-color: var(--clr-primary);
+  color: var(--clr-white);
+  border: none;
 }
 
 .no-background-intense-btn:hover{
