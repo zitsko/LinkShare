@@ -30,7 +30,7 @@ function Links() {
   useEffect(() => {
     if (localStorage.getItem("token")) {
       axios
-        .post("http://localhost:3636/user/verify", {
+        .post(`${backendUrl}/user/verify`, {
           token: localStorage.getItem("token"),
         })
         .then(({ data }) => {
@@ -54,7 +54,7 @@ function Links() {
   const fetchLinks = async (userId) => {
     try {
       // console.log("Fetching links for user:", userId);
-      const response = await axios.get(`http://localhost:3636/links/${userId}`);
+      const response = await axios.get(`${backendUrl}/links/${userId}`);
       // console.log("Response data:", response.data);
       setLinks(response.data);
       setShowStartInfo(response.data.length === 0);
@@ -143,12 +143,12 @@ function Links() {
       if (selectedLink._id) {
         // If an ID is present, update the link
         await axios.put(
-          `http://localhost:3636/links/${selectedLink._id}`,
+          `${backendUrl}/links/${selectedLink._id}`,
           linkData
         );
       } else {
         // If no ID, create a new link
-        await axios.post("http://localhost:3636/links", linkData);
+        await axios.post(`${backendUrl}/links`, linkData);
       }
 
       // Update the state to show the new link
@@ -170,7 +170,7 @@ function Links() {
     );
     if (shouldDelete) {
       try {
-        await axios.delete(`http://localhost:3636/links/${linkId}`);
+        await axios.delete(`${backendUrl}/links/${linkId}`);
         fetchLinks(user._id);
       } catch (error) {
         console.error("Error deleting link:", error);
@@ -184,7 +184,7 @@ function Links() {
     );
     if (shouldDeleteAll) {
       try {
-        await axios.delete("http://localhost:3636/links");
+        await axios.delete(`${backendUrl}/links`);
         setLinks([]);
       } catch (error) {
         console.error("Failed to delete all links:", error);

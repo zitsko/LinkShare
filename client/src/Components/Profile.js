@@ -23,7 +23,7 @@ function Profile() {
   useEffect(() => {
     if (localStorage.getItem("token")) {
       axios
-        .post("http://localhost:3636/user/verify", {
+        .post(`${backendUrl}/user/verify`, {
           token: localStorage.getItem("token"),
         })
         .then(({ data }) => {
@@ -48,7 +48,7 @@ function Profile() {
     try {
       console.log("Fetching profile details for user:", userId);
       const response = await axios.get(
-        `http://localhost:3636/profile/${userId}`
+        `${backendUrl}/profile/${userId}`
       );
       setProfileDetails(response.data);
 
@@ -121,12 +121,12 @@ function Profile() {
         // User already has a profile, update it
         profileData._id = profileDetails[0]._id;
         await axios.put(
-          `http://localhost:3636/profile/${profileData._id}`,
+          `${backendUrl}/profile/${profileData._id}`,
           profileData
         );
       } else {
         // User doesn't have a profile yet, create a new one
-        await axios.post("http://localhost:3636/profile", profileData);
+        await axios.post(`${backendUrl}/profile`, profileData);
         console.log("New profile created successfully!");
       }
 

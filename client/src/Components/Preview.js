@@ -19,7 +19,7 @@ function Preview() {
   useEffect(() => {
     if (localStorage.getItem("token")) {
       axios
-        .post("http://localhost:3636/user/verify", {
+        .post(`${backendUrl}/user/verify`, {
           token: localStorage.getItem("token"),
         })
         .then(({ data }) => {
@@ -43,9 +43,8 @@ function Preview() {
   const fetchProfileDetails = async (userId) => {
     try {
       const response = await axios.get(
-        `http://localhost:3636/profile/${userId}`
+        `${backendUrl}/profile/${userId}`
       );
-      console.log("Response data:", response.data[0]);
       setProfileDetails(response.data[0]); // Assuming the API returns an array of profiles we take the first one
       setIsLoading(false);
     } catch (error) {
@@ -55,7 +54,7 @@ function Preview() {
 
   const fetchLinks = async (userId) => {
     try {
-      const response = await axios.get(`http://localhost:3636/links/${userId}`);
+      const response = await axios.get(`${backendUrl}/links/${userId}`);
       setLinks(response.data);
       setIsLoading(false);
     } catch (error) {

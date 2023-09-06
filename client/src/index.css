@@ -2,6 +2,7 @@ body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  
 }
 
 code {
@@ -105,6 +106,7 @@ code {
   max-width: 40rem;
   margin: 0 auto;
   padding: 1.25rem;
+  margin-top: 2rem;
 }
 
 .flex-col{

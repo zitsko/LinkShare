@@ -13,7 +13,7 @@ function Login() {
 
   function login() {
     axios
-      .post("http://localhost:3636/user/login", { email, password })
+      .post(`${backendUrl}/user/login`, { email, password })
       .then(({ data }) => {
         if (data.token) {
           localStorage.setItem("token", data.token);
