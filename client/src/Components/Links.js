@@ -7,6 +7,7 @@ import LinkList from "../LinkComponents/LinkList";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
+import backendUrl from "../configBackend";
 
 function Links() {
   //-------- State Variables-----------

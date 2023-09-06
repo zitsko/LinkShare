@@ -4,6 +4,7 @@ import PreviewNavbar from "../Navbars/PreviewNavbar";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import backendUrl from "../configBackend";
 
 function Preview() {
   const [links, setLinks] = useState([]);

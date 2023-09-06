@@ -3,6 +3,7 @@ import { useNavigate, } from "react-router-dom";
 import MainNavbar from "../Navbars/MainNavbar";
 import axios from "axios";
 import ProfileForm from "../ProfileComponents/ProfileForm";
+import backendUrl from "../configBackend";
 
 function Profile() {
   const [firstName, setName] = useState("");
