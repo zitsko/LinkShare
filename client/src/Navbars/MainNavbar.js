@@ -23,37 +23,40 @@ function MainNavbar() {
     <nav>
       <ul className="main-navbar-container">
         <li>
-          <button onClick={() => navigate("/links")} className="btn light-btn">
-            <FontAwesomeIcon icon={faLink} className="icon-size" /> 
+          <button
+            onClick={() => navigate("/links")}
+            className="btn primary-btn"
+          >
+            <FontAwesomeIcon icon={faLink} className="icon-size" />
           </button>
         </li>
 
         <li>
           <button
             onClick={() => navigate("/profile")}
-            className="btn light-btn"
+            className="btn primary-btn"
           >
-            <FontAwesomeIcon icon={faUser} className="icon-size" /> 
-          </button>
-        </li>
-        
-        <li>
-          <button
-            onClick={() => navigate("/preview/")}
-            className="btn light-btn"
-          >
-            <FontAwesomeIcon icon={faEye} className="icon-size" /> 
+            <FontAwesomeIcon icon={faUser} className="icon-size" />
           </button>
         </li>
 
         <li>
-        <button
+          <button
+            onClick={() => navigate("/preview/")}
+            className="btn primary-btn"
+          >
+            <FontAwesomeIcon icon={faEye} className="icon-size" />
+          </button>
+        </li>
+
+        <li>
+          <button
             className="btn intense-btn "
             onClick={() => {
               logout();
             }}
           >
-             <FontAwesomeIcon icon={faPowerOff} />
+            <FontAwesomeIcon icon={faPowerOff} />
           </button>
         </li>
       </ul>
@@ -62,4 +65,3 @@ function MainNavbar() {
 }
 
 export default MainNavbar;
-
