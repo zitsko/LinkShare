@@ -56,7 +56,7 @@ function MainNavbar() {
               logout();
             }}
           >
-            <FontAwesomeIcon icon={faPowerOff} />
+            <FontAwesomeIcon icon={faPowerOff} className="icon-size" />
           </button>
         </li>
       </ul>
