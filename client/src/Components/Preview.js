@@ -83,8 +83,8 @@ function Preview() {
         handleShareProfile={handleShareProfile}
         showConfirmationModal={showConfirmationModal}
       />
-      {!isLoading && (
-        <>
+      
+     
           <div className="profile-in-preview-container flex-col">
             <h1 className="heading text-shadow">Profile Preview</h1>
 
@@ -130,8 +130,8 @@ function Preview() {
           ) : (
             <p>No links found.</p>
           )}
-        </>
-      )}
+        
+     
 
       {showProfileSavedModal && (
         <div className="share-links-modal">

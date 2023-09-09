@@ -16,7 +16,8 @@ const profileSchema = new mongoose.Schema({
   profileEmail: {
     type: String,
     required: true,
-    // unique: true, 
+    unique: true, 
+    // sparse: true,
   },
    userId: {
     type: String,

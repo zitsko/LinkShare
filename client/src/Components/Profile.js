@@ -13,7 +13,7 @@ function Profile() {
   const [userImg, setuserImg] = useState("");
   const [profileEmail, setProfileEmail] = useState("");
   const [profileDetails, setProfileDetails] = useState({});
-  const [isLoading, setIsLoading] = useState(true);
+  // const [isLoading, setIsLoading] = useState(true);
   const [user, setUser] = useState({
     _id: "",
     email: "",
@@ -62,7 +62,6 @@ function Profile() {
         setName(profileData.firstName);
         setLastName(profileData.lastName);
         setProfileEmail(profileData.profileEmail);
-        setIsLoading(false);
       }
     } catch (error) {
       console.error("Error fetching profile details:", error);
@@ -152,10 +151,12 @@ function Profile() {
   return (
     <div className="app-layout">
       <MainNavbar />
-{!isLoading && (
+
       <div className="profile-details-container flex-col">
         <h1 className="heading text-shadow">Profile Details</h1>
-        {imageUrl && <img src={imageUrl} alt="" className="profile-image" />}
+        {imageUrl && 
+        <img src={imageUrl} alt="" className="profile-image" />
+        }
 
         {/* Render ProfileForm to allow the user to edit and save the profile data */}
         <ProfileForm
@@ -169,7 +170,7 @@ function Profile() {
           handleSubmit={handleSubmit}
         />
       </div>
-      )}
+     
 
       {/* Confirmation Modal */}
       {showModal && (

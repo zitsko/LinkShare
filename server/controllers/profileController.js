@@ -2,7 +2,6 @@ const Profile = require('../modules/profile');
 const cloudinary = require('../cloudinary')
 
 async function uploadImageToCloudinary(req, res) {
-  console.log("hello")
   try {
     const imageURL = req.body.imageURL;
 
@@ -36,6 +35,7 @@ async function createUserProfile(req, res) {
 
     return res.status(201).json(newProfile);
   } catch (error) {
+    console.error('Error creating user profile:', error);
     return res.status(500).json({ error: 'Failed to create the user profile.' });
   }
 }
@@ -53,6 +53,8 @@ async function getUserProfileByUserId(req, res) {
 
     return res.json(profile);
   } catch (error) {
+    console.error('Error updating user profile:', error);
+
     return res.status(500).json({ error: 'Failed to retrieve the user profile.' });
   }
 }
@@ -71,6 +73,7 @@ async function updateUserProfileByUserId(req, res) {
     }
 
     // Update the user profile properties
+   
     profileToUpdate.imageURL = profileImage; // Update imageURL with the Cloudinary URL
     profileToUpdate.firstName = firstName;
     profileToUpdate.lastName = lastName;

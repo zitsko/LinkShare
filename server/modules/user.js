@@ -5,5 +5,15 @@ const User = mongoose.model("User", {
     email: String,
     password: String,
   });
-
-module.exports = User;
+  
+  // const User = mongoose.model("User", {
+    //   email: {
+      //       type: String,
+      //       required: true,
+      //       unique: true,
+      //   },
+      //   password: String,
+      // });
+      
+      
+      module.exports = User;
