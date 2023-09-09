@@ -11,7 +11,7 @@ function Preview() {
   const [profileDetails, setProfileDetails] = useState({});
   const [showProfileSavedModal, setShowProfileSavedModal] = useState(false);
   const navigate = useNavigate();
-  const [isLoading, setIsLoading] = useState(true);
+  // const [isLoading, setIsLoading] = useState(true);
   const [user, setUser] = useState({
     _id: "",
     email: "",
@@ -105,7 +105,7 @@ function Preview() {
           </div>
 
           {/* Links */}
-          {links.length > 0 ? (
+       
             <ul className="clickable-links-container flex-col">
               {links.map((link) => (
                 <li key={link._id} className="link-box">
@@ -127,9 +127,7 @@ function Preview() {
                 </li>
               ))}
             </ul>
-          ) : (
-            <p>No links found.</p>
-          )}
+         
         
      
 
