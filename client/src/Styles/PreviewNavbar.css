@@ -3,9 +3,12 @@
     justify-content: space-between;
 }
 
+.icon-size{
+    font-size: 24px;
+}
+
 @media (max-width:500px) {
-    .main-navbar-container{
-        justify-content: center;
-        gap: 1rem;
-    }
+    .icon-size {
+        font-size: 16px; 
+      }
 }

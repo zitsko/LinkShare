@@ -24,7 +24,7 @@ function MainNavbar() {
       <ul className="main-navbar-container">
         <li>
           <button onClick={() => navigate("/links")} className="btn light-btn">
-            <FontAwesomeIcon icon={faLink} size="lg" /> Links
+            <FontAwesomeIcon icon={faLink} className="icon-size" /> 
           </button>
         </li>
 
@@ -33,7 +33,7 @@ function MainNavbar() {
             onClick={() => navigate("/profile")}
             className="btn light-btn"
           >
-            <FontAwesomeIcon icon={faUser} size="lg" /> Profile
+            <FontAwesomeIcon icon={faUser} className="icon-size" /> 
           </button>
         </li>
         
@@ -42,7 +42,7 @@ function MainNavbar() {
             onClick={() => navigate("/preview/")}
             className="btn light-btn"
           >
-            <FontAwesomeIcon icon={faEye} size="lg" /> Preview
+            <FontAwesomeIcon icon={faEye} className="icon-size" /> 
           </button>
         </li>
 

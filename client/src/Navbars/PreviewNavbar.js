@@ -13,7 +13,7 @@ function PreviewNavbar({ handleShareProfile, showConfirmationModal }) {
       <ul className="preview-navbar-container">
       <li>
           <button onClick={() => navigate("/links")} className="btn light-btn">
-            <FontAwesomeIcon icon={faLink} size="lg" /> 
+            <FontAwesomeIcon icon={faLink} className="icon-size" /> 
           </button>
         </li>     
 
@@ -22,7 +22,7 @@ function PreviewNavbar({ handleShareProfile, showConfirmationModal }) {
             onClick={() => navigate("/profile")}
             className="btn light-btn"
           >
-            <FontAwesomeIcon icon={faUser} size="lg" /> 
+            <FontAwesomeIcon icon={faUser} className="icon-size" /> 
           </button>
         </li>
 
@@ -34,7 +34,7 @@ function PreviewNavbar({ handleShareProfile, showConfirmationModal }) {
             }}
             className='btn primary-btn animated'
             >
-              <FontAwesomeIcon icon={faShare} size="lg" />
+              <FontAwesomeIcon icon={faShare} className="icon-size" />
               {" "} 
           </button>
         </li>
