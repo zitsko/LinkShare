@@ -47,8 +47,7 @@ function Preview() {
         `${backendUrl}/profile/${userId}`
       );
       setProfileDetails(response.data[0]); // Assuming the API returns an array of profiles we take the first one
-      setIsLoading(false);
-    } catch (error) {
+     } catch (error) {
       console.error("Error fetching profile details:", error);
     }
   };
@@ -57,7 +56,6 @@ function Preview() {
     try {
       const response = await axios.get(`${backendUrl}/links/${userId}`);
       setLinks(response.data);
-      setIsLoading(false);
     } catch (error) {
       console.error("Error fetching links:", error);
     }
