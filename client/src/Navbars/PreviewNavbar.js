@@ -7,13 +7,13 @@ import { faShare } from "@fortawesome/free-solid-svg-icons";
 
 function PreviewNavbar({ handleShareProfile, showConfirmationModal }) {
   const navigate = useNavigate();
-
+  const isSmallScreen = window.innerWidth <= 500;
   return (
     <nav>
       <ul className="preview-navbar-container">
       <li>
           <button onClick={() => navigate("/links")} className="btn light-btn">
-            <FontAwesomeIcon icon={faLink} size="lg" /> Links
+            <FontAwesomeIcon icon={faLink} size={isSmallScreen ? 'sm' : 'lg'} /> Links
           </button>
         </li>     
 
@@ -22,7 +22,7 @@ function PreviewNavbar({ handleShareProfile, showConfirmationModal }) {
             onClick={() => navigate("/profile")}
             className="btn light-btn"
           >
-            <FontAwesomeIcon icon={faUser} size="lg" /> Profile
+            <FontAwesomeIcon icon={faUser} size={isSmallScreen ? 'sm' : 'lg'} /> Profile
           </button>
         </li>
 
@@ -34,7 +34,7 @@ function PreviewNavbar({ handleShareProfile, showConfirmationModal }) {
             }}
             className='btn primary-btn animated'
             >
-              <FontAwesomeIcon icon={faShare} size="lg" />
+              <FontAwesomeIcon icon={faShare} size={isSmallScreen ? 'sm' : 'lg'} />
               {" "} Share Profile
           </button>
         </li>
